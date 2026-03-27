@@ -391,7 +391,7 @@ const steps = [
 
   input.addEventListener('input', () => { fb!.textContent = ''; });
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const email = input.value.trim();
     if (!email) { show('⚠ Inserisci il tuo indirizzo email.', false); input.focus(); return; }
