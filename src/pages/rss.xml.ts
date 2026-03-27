@@ -1,7 +1,5 @@
----
 // src/pages/rss.xml.ts
 // Feed RSS per HablaSmart — compatibile con tutti i lettori RSS
----
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
