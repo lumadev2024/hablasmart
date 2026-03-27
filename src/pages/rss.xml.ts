@@ -21,6 +21,6 @@ export async function GET(context: APIContext) {
       author:      post.data.author ?? 'HablaSmart',
     })),
     customData: `<language>it-IT</language>`,
-    stylesheet: '/rss/styles.xsl',
+    stylesheet: '/rss/styles.xsl', 
   });
 }

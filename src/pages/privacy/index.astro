@@ -1,0 +1,244 @@
+---
+/**
+ * src/pages/privacy/index.astro
+ * Privacy Policy di HablaSmart — GDPR compliant.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+const lastUpdate = '27 marzo 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Informativa sul trattamento dei dati personali di HablaSmart, ai sensi del Regolamento UE 2016/679 (GDPR)."
+>
+  <section class="privacy">
+    <div class="container privacy-inner">
+
+      <header class="privacy-header">
+        <p class="privacy-eyebrow">Informativa sulla privacy</p>
+        <h1 class="privacy-title">Privacy Policy</h1>
+        <p class="privacy-meta">Ultimo aggiornamento: {lastUpdate}</p>
+      </header>
+
+      <div class="privacy-body">
+
+        <section class="privacy-section">
+          <h2>1. Titolare del trattamento</h2>
+          <p>
+            Il Titolare del trattamento dei dati personali raccolti attraverso il sito
+            <strong>HablaSmart</strong> (di seguito "il Sito") è il gestore del blog,
+            raggiungibile all'indirizzo email:
+            <a href="mailto:info@hablasmart.it">info@hablasmart.it</a>.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>2. Dati raccolti e finalità</h2>
+          <p>Il Sito raccoglie i seguenti dati personali nelle modalità indicate:</p>
+
+          <h3>Dati di navigazione</h3>
+          <p>
+            I sistemi informatici e le procedure software preposte al funzionamento del
+            Sito acquisiscono, nel corso del loro normale esercizio, alcuni dati personali
+            la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di
+            Internet (es. indirizzi IP, tipo di browser, sistema operativo, pagine visitate).
+            Questi dati sono utilizzati esclusivamente per ottenere informazioni statistiche
+            anonime sull'uso del Sito e per controllarne il corretto funzionamento.
+          </p>
+
+          <h3>Iscrizione alla newsletter</h3>
+          <p>
+            Se decidi di iscriverti alla newsletter, raccogliamo il tuo indirizzo email.
+            Questo dato viene utilizzato esclusivamente per l'invio di comunicazioni
+            periodiche sui contenuti del blog. Il conferimento è facoltativo e puoi
+            disiscriverti in qualsiasi momento tramite il link presente in ogni email.
+          </p>
+          <p>
+            La base giuridica del trattamento è il consenso espresso dell'interessato
+            (art. 6, par. 1, lett. a del GDPR).
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>3. Modalità del trattamento</h2>
+          <p>
+            I dati personali sono trattati con strumenti automatizzati per il tempo
+            strettamente necessario a conseguire gli scopi per cui sono stati raccolti.
+            Sono adottate misure di sicurezza per prevenire la perdita dei dati, usi
+            illeciti o non corretti ed accessi non autorizzati.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>4. Conservazione dei dati</h2>
+          <p>
+            I dati di navigazione vengono conservati per il tempo strettamente necessario
+            alla gestione tecnica del Sito. I dati forniti per la newsletter vengono
+            conservati fino alla revoca del consenso da parte dell'interessato.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>5. Comunicazione e diffusione dei dati</h2>
+          <p>
+            I dati personali non vengono venduti, ceduti o comunicati a terzi, ad eccezione
+            dei seguenti fornitori tecnici necessari all'erogazione del servizio:
+          </p>
+          <ul>
+            <li>
+              <strong>Vercel Inc.</strong> — hosting e distribuzione del Sito
+              (sede negli USA, adeguata protezione tramite Binding Corporate Rules).
+            </li>
+            <li>
+              <strong>Fornitore del servizio newsletter</strong> — per l'invio delle
+              comunicazioni email agli iscritti.
+            </li>
+          </ul>
+          <p>
+            Questi soggetti agiscono in qualità di Responsabili del trattamento e
+            trattano i dati esclusivamente per le finalità indicate.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>6. Diritti dell'interessato</h2>
+          <p>
+            Ai sensi degli artt. 15–22 del GDPR, hai il diritto di:
+          </p>
+          <ul>
+            <li>accedere ai tuoi dati personali;</li>
+            <li>richiederne la rettifica o la cancellazione;</li>
+            <li>opporti al trattamento o chiederne la limitazione;</li>
+            <li>richiedere la portabilità dei dati;</li>
+            <li>revocare il consenso in qualsiasi momento, senza pregiudicare la
+                liceità del trattamento basata sul consenso prestato prima della revoca;</li>
+            <li>proporre reclamo all'Autorità Garante per la protezione dei dati
+                personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>).
+            </li>
+          </ul>
+          <p>
+            Per esercitare i tuoi diritti puoi scrivere a:
+            <a href="mailto:info@hablasmart.it">info@hablasmart.it</a>.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>7. Cookie</h2>
+          <p>
+            Il Sito utilizza cookie tecnici necessari al funzionamento. Per maggiori
+            informazioni consulta la nostra
+            <a href="/cookie-policy/">Cookie Policy</a>.
+          </p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>8. Modifiche alla presente informativa</h2>
+          <p>
+            Il Titolare si riserva il diritto di modificare la presente informativa in
+            qualsiasi momento. Le modifiche hanno effetto dalla data di pubblicazione
+            sul Sito. Ti invitiamo a consultare periodicamente questa pagina.
+          </p>
+        </section>
+
+      </div><!-- /.privacy-body -->
+
+      <div class="privacy-back">
+        <a href="/" class="btn btn-ghost">← Torna alla homepage</a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.privacy {
+  padding: var(--space-20) 0 var(--space-32);
+}
+
+.privacy-inner {
+  max-width: 740px;
+}
+
+.privacy-header {
+  margin-bottom: var(--space-12);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.privacy-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.privacy-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.privacy-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Body */
+.privacy-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.privacy-section h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+.privacy-section h3 {
+  font-size: var(--text-md);
+  font-weight: 700;
+  margin: var(--space-5) 0 var(--space-2);
+  color: var(--color-text);
+}
+
+.privacy-section p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.85;
+  margin-bottom: var(--space-3);
+}
+
+.privacy-section ul {
+  padding-left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.privacy-section li {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+.privacy-section a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.privacy-section a:hover { opacity: .8; }
+
+.privacy-back {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-light);
+}
+</style>
