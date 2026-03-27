@@ -401,13 +401,28 @@ const steps = [
     btn.disabled = true;
     btn.textContent = 'Iscrizione in corso…';
 
-    // TODO: sostituire con fetch reale al tuo provider (Mailchimp, ConvertKit, ecc.)
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        input.value = '';
+        show('✓ Iscrizione completata! Controlla la tua email.', true);
+      } else if (res.status === 409) {
+        show('ℹ Sei già iscritto con questa email.', false);
+      } else {
+        show(data.error ?? '✗ Qualcosa è andato storto. Riprova.', false);
+      }
+    } catch {
+      show('✗ Errore di rete. Controlla la connessione e riprova.', false);
+    } finally {
       btn.disabled = false;
       btn.textContent = 'Iscriviti ora';
-      input.value = '';
-      show('✓ Iscrizione completata! Controlla la tua email.', true);
-    }, 1200);
+    }
   });
 })();
 </script>
