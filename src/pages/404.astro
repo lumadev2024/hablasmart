@@ -1,0 +1,73 @@
+---
+/**
+ * src/pages/404.astro
+ * Pagina di errore 404 personalizzata.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Pagina non trovata"
+  description="La pagina che cerchi non esiste o è stata spostata."
+>
+  <section class="not-found">
+    <div class="container not-found-inner">
+      <div class="not-found-number" aria-hidden="true">404</div>
+      <h1 class="not-found-title">Pagina non trovata</h1>
+      <p class="not-found-desc">
+        La pagina che cerchi non esiste o è stata spostata.<br>
+        Prova a tornare alla homepage o a esplorare gli articoli.
+      </p>
+      <div class="not-found-actions">
+        <a href="/" class="btn btn-primary btn-lg">← Torna alla homepage</a>
+        <a href="/articoli/" class="btn btn-ghost btn-lg">Esplora gli articoli</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.not-found {
+  min-height: calc(100vh - var(--header-height) - 200px);
+  display: flex;
+  align-items: center;
+  padding: var(--space-32) 0;
+}
+
+.not-found-inner { text-align: center; }
+
+.not-found-number {
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-6);
+}
+
+.not-found-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  margin-bottom: var(--space-5);
+}
+
+.not-found-desc {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto var(--space-10);
+}
+
+.not-found-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+</style>

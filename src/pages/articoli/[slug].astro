@@ -1,0 +1,44 @@
+---
+/**
+ * src/pages/articoli/[slug].astro
+ * Pagina dinamica per ogni articolo del blog.
+ * getStaticPaths() genera una route per ogni file .md
+ * presente in src/content/blog/.
+ */
+import PostLayout from '@/layouts/PostLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { readingTime } from '@/utils/readingTime';
+import type { CollectionEntry } from 'astro:content';
+
+// ============================================================
+// getStaticPaths — genera le rotte statiche
+// Una rotta per ogni .md non in bozza
+// ============================================================
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props:  { post },
+  }));
+}
+
+// ============================================================
+// Props dalla route
+// ============================================================
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+
+// Render del contenuto Markdown → HTML
+const { Content } = await post.render();
+
+// Calcola i minuti di lettura sul corpo grezzo
+const rt = readingTime(post.body);
+---
+
+<PostLayout post={post} readingTime={rt}>
+  <!-- Il componente <Content /> inietta il markdown renderizzato -->
+  <Content />
+</PostLayout>

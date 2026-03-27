@@ -1,0 +1,248 @@
+---
+/**
+ * src/pages/chi-sono/index.astro
+ * Pagina Chi sono / About HablaSmart.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Chi sono"
+  description="HablaSmart nasce per analizzare la comunicazione per come avviene davvero: segnali nascosti, dinamiche implicite e situazioni quotidiane."
+>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <p class="about-eyebrow reveal-up">Chi sono</p>
+      <h1 class="about-title reveal-up">
+        Ti è mai capitato di notare qualcosa… e non capire cosa significasse davvero?
+      </h1>
+      <p class="about-subtitle reveal-up">
+        Un gesto. Un cambio di tono. Un'espressione fuggente durante una conversazione.
+        O la sensazione che qualcuno stesse dicendo una cosa, ma comunicandone un'altra.
+        La maggior parte dei contenuti sulla comunicazione parla di teoria, di tecniche,
+        di crescita personale. Ma nella realtà, le interazioni tra le persone sono molto
+        più <strong>ambigue, implicite e difficili da interpretare.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COSA TROVI
+  ============================================================ -->
+  <section class="about-topics">
+    <div class="container">
+      <h2 class="topics-heading reveal-up">Su HablaSmart troverai</h2>
+      <div class="topics-grid">
+
+        <article class="topic-card reveal-up" style="--delay: 0.1s">
+          <div class="topic-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M11 7v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M21 21l-2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="topic-title">Situazioni reali e quotidiane</h3>
+          <p class="topic-desc">
+            Niente esperimenti in laboratorio. Analisi di conversazioni, interazioni
+            e dinamiche che riconosci perché le vivi ogni giorno.
+          </p>
+        </article>
+
+        <article class="topic-card reveal-up" style="--delay: 0.2s">
+          <div class="topic-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 5V3M12 21v-2M5 12H3M21 12h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="topic-title">Segnali nascosti e comunicazione implicita</h3>
+          <p class="topic-desc">
+            Quello che non viene detto, il sottotesto, i segnali non verbali
+            e i pattern che passano inosservati ma che plasmano ogni interazione.
+          </p>
+        </article>
+
+        <article class="topic-card reveal-up" style="--delay: 0.3s">
+          <div class="topic-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M17 8C17 10.761 14.761 13 12 13C9.239 13 7 10.761 7 8C7 5.239 9.239 3 12 3C14.761 3 17 5.239 17 8Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M3 21C3 17.134 7.029 14 12 14C16.971 14 21 17.134 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M19 8h2M19 11l2-1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="topic-title">Dinamiche delle relazioni moderne</h3>
+          <p class="topic-desc">
+            Come si costruisce (e si rompe) la fiducia, perché certe conversazioni
+            scivolano, e cosa muove davvero le relazioni nel mondo di oggi.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ORIGINE
+  ============================================================ -->
+  <section class="about-origin">
+    <div class="container about-origin-inner reveal-up">
+      <blockquote class="origin-quote">
+        <p>
+          Questo progetto nasce da anni di osservazione diretta delle dinamiche
+          sociali e comunicative nella vita quotidiana. Non da una cattedra,
+          ma dal basso — dalla curiosità di capire cosa succede davvero
+          quando due persone si parlano.
+        </p>
+      </blockquote>
+      <div class="origin-cta">
+        <a href="/articoli/" class="btn btn-primary btn-lg">Esplora gli articoli</a>
+        <a href="/#newsletter" class="btn btn-ghost btn-lg">Iscriviti alla newsletter</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+/* ============================================================
+   HERO
+============================================================ */
+.about-hero {
+  padding: var(--space-20) 0 var(--space-12);
+  background: linear-gradient(180deg, var(--color-primary-light) 0%, transparent 100%);
+}
+.about-hero-inner { max-width: 760px; }
+
+.about-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+.about-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-5xl));
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-6);
+  color: var(--color-text);
+}
+
+.about-subtitle {
+  font-size: clamp(var(--text-md), 2vw, var(--text-xl));
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+
+/* ============================================================
+   COSA TROVI
+============================================================ */
+.about-topics {
+  padding: var(--space-12) 0;
+  background: var(--color-surface);
+}
+
+.topics-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.topic-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  animation-delay: var(--delay, 0s);
+}
+.topic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.topic-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.topic-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+}
+
+.topic-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* ============================================================
+   ORIGINE
+============================================================ */
+.about-origin {
+  padding: var(--space-12) 0 var(--space-20);
+}
+.about-origin-inner { max-width: 680px; }
+
+.origin-quote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-8);
+  margin: 0 0 var(--space-12);
+}
+.origin-quote p {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-md), 2vw, var(--text-xl));
+  line-height: 1.85;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.origin-cta {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+  .topics-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .about-hero { padding: var(--space-20) 0 var(--space-12); }
+  .topics-grid { grid-template-columns: 1fr; }
+  .origin-cta { flex-direction: column; }
+}
+</style>

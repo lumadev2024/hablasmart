@@ -1,0 +1,869 @@
+---
+/**
+ * src/pages/index.astro
+ * Homepage di HablaSmart.
+ * Gli articoli in evidenza vengono letti dalle Content Collections.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PostCard    from '@/components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { readingTime }   from '@/utils/readingTime';
+
+// ============================================================
+// DATI ARTICOLI — Content Collections
+// Prende i 3 articoli più recenti non in bozza
+// ============================================================
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredPosts = allPosts.slice(0, 3);
+
+// Schema JSON-LD homepage
+const homeSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${Astro.site}#website`,
+      url: Astro.site,
+      name: 'HablaSmart',
+      description: 'Blog italiano su comunicazione comportamentale, psicologia della persuasione, marketing e AI applicata ai contenuti.',
+      inLanguage: 'it-IT',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${Astro.site}articoli/?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Blog',
+      '@id': `${Astro.site}#blog`,
+      name: 'HablaSmart',
+      url: Astro.site,
+      inLanguage: 'it-IT',
+      publisher: { '@type': 'Organization', name: 'HablaSmart', url: Astro.site },
+    },
+    ...featuredPosts.map(post => ({
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      description: post.data.description,
+      url: `${Astro.site}articoli/${post.slug}/`,
+      datePublished: post.data.pubDate.toISOString(),
+      inLanguage: 'it-IT',
+      author: { '@type': 'Organization', name: 'HablaSmart' },
+    })),
+  ],
+});
+
+// Pilastri editoriali
+const pillars = [
+  {
+    icon: `<path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2zm0 4a4 4 0 110 8 4 4 0 010-8zm0 17.2a8.8 8.8 0 01-7.333-3.928C8.253 17.36 11.053 16.4 14 16.4c2.947 0 5.747.96 7.333 2.872A8.8 8.8 0 0114 23.2z" fill="currentColor"/>`,
+    title: 'Comunicazione Comportamentale',
+    desc:  'Dalla prossemica digitale ai modelli di conversazione persuasiva: impara a leggere e costruire messaggi che vengono ascoltati davvero.',
+    href:  '/articoli/?categoria=Comunicazione',
+    label: 'comunicazione comportamentale',
+    delay: '0.1s',
+  },
+  {
+    icon: `<path d="M3 7h22v2H3V7zm0 6h22v2H3v-2zm0 6h14v2H3v-2z" fill="currentColor"/>`,
+    title: 'Marketing con Psicologia',
+    desc:  'Bias cognitivi, framing effect, social proof e nudge theory applicati a campagne reali. Il marketing che converte non è quello più rumoroso.',
+    href:  '/articoli/?categoria=Marketing',
+    label: 'marketing e psicologia',
+    delay: '0.2s',
+  },
+  {
+    icon: `<path d="M14 2L3 8v12l11 6 11-6V8L14 2zm0 3.09L22.09 9.5 14 13.91 5.91 9.5 14 5.09zM5 11.44l8 4.37V23.5L5 19.13V11.44zm10 12.06v-7.69l8-4.37v7.69L15 23.5z" fill="currentColor"/>`,
+    title: 'Psicologia della Persuasione',
+    desc:  'Da Cialdini ai moderni modelli di influence architecture: un viaggio nelle strutture mentali che guidano le decisioni.',
+    href:  '/articoli/?categoria=Persuasione',
+    label: 'psicologia della persuasione',
+    delay: '0.3s',
+  },
+  {
+    icon: `<path d="M22 10h-4V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h4v4l8-4h4a2 2 0 002-2v-6a2 2 0 00-2-2z" fill="currentColor"/>`,
+    title: 'AI Applicata ai Contenuti',
+    desc:  "Workflow, prompt design e strategia editoriale AI-assisted per produrre contenuti di qualità. L'AI amplifica la tua voce, non la sostituisce.",
+    href:  '/articoli/?categoria=AI+%26+Contenuti',
+    label: 'AI applicata ai contenuti',
+    delay: '0.4s',
+  },
+];
+
+// Passi del metodo
+const steps = [
+  { num: '01', title: 'Osserva', delay: '0.1s', desc: 'Partiamo dai dati comportamentali reali: studi scientifici peer-reviewed, ricerche di neuroscienze applicate e analisi dei pattern comunicativi dei contesti digitali contemporanei.' },
+  { num: '02', title: 'Analizza', delay: '0.2s', desc: 'I meccanismi cognitivi vengono scomposti e reinterpretati nel contesto del marketing moderno. Niente semplificazioni inutili: la complessità resa accessibile senza essere tradita.' },
+  { num: '03', title: 'Applica', delay: '0.3s', desc: 'Ogni insight si traduce in un framework concreto, un template o un processo step-by-step. Puoi iniziare ad applicare ogni contenuto già nelle successive 24 ore dalla lettura.' },
+  { num: '04', title: 'Misura', delay: '0.4s', desc: 'La comunicazione efficace è misurabile. Impara a definire KPI comportamentali, interpretare i segnali di engagement e iterare la tua strategia basandoti su evidenze.' },
+];
+---
+
+<BaseLayout>
+  <!-- Schema JSON-LD iniettato nel <head> tramite slot -->
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={homeSchema} />
+  </Fragment>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container hero-container">
+
+      <div class="hero-content">
+        <span class="hero-badge" aria-label="Argomenti del blog">
+          Comunicazione · Persuasione · AI
+        </span>
+        <h1 id="hero-heading" class="hero-title">
+          Comunica con<br>
+          <em class="hero-accent">intelligenza.</em><br>
+          Persuadi con integrità.
+        </h1>
+        <p class="hero-subtitle">
+          HablaSmart esplora la mente umana, il linguaggio della persuasione
+          e l'intelligenza artificiale per trasformare il modo in cui comunichi —
+          con gli altri, con il tuo pubblico, con il mondo.
+        </p>
+        <div class="hero-actions">
+          <a href="/articoli/" class="btn btn-primary btn-lg"
+             aria-label="Esplora tutti gli articoli del blog">
+            Esplora gli articoli
+          </a>
+          <a href="#newsletter" class="btn btn-ghost btn-lg"
+             aria-label="Iscriviti alla newsletter gratuita">
+            Newsletter gratuita
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <p class="hero-social-proof">
+          <span class="proof-dot" aria-hidden="true">●</span>
+          Letto da oltre 2.400 professionisti ogni settimana
+        </p>
+      </div>
+
+      <!-- Elemento visivo astratto CSS -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="abstract-shape shape-1"></div>
+        <div class="abstract-shape shape-2"></div>
+        <div class="abstract-shape shape-3"></div>
+        <div class="abstract-grid"></div>
+        <div class="floating-card card-float-1">
+          <span class="fc-icon">🧠</span>
+          <span class="fc-text">Psicologia<br>applicata</span>
+        </div>
+        <div class="floating-card card-float-2">
+          <span class="fc-icon">✦</span>
+          <span class="fc-text">{allPosts.length} articoli<br>pubblicati</span>
+        </div>
+        <div class="floating-card card-float-3">
+          <span class="fc-icon">⚡</span>
+          <span class="fc-text">AI &amp;<br>Contenuti</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PILASTRI
+  ============================================================ -->
+  <section class="pillars" aria-labelledby="pillars-heading" id="pillars">
+    <div class="container">
+
+      <header class="section-header reveal-up">
+        <span class="section-label">Cosa trovi qui</span>
+        <h2 id="pillars-heading" class="section-title">
+          Quattro discipline.<br>Un'unica visione.
+        </h2>
+        <p class="section-subtitle">
+          HablaSmart non è un blog generico. Ogni contenuto è costruito attorno
+          a un sistema di pensiero coerente, dove scienza cognitiva e strategia
+          si incontrano per creare comunicazione che funziona davvero.
+        </p>
+      </header>
+
+      <div class="pillars-grid">
+        {pillars.map(p => (
+          <article class="pillar-card reveal-up" style={`--delay: ${p.delay}`}>
+            <div class="pillar-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                <Fragment set:html={p.icon} />
+              </svg>
+            </div>
+            <h3 class="pillar-title">{p.title}</h3>
+            <p class="pillar-desc">{p.desc}</p>
+            <a href={p.href} class="pillar-link"
+               aria-label={`Leggi articoli su ${p.label}`}>
+              Esplora <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ARTICOLI IN EVIDENZA — da Content Collections
+  ============================================================ -->
+  <section class="featured-posts" aria-labelledby="featured-heading" id="articoli">
+    <div class="container">
+
+      <header class="section-header reveal-up">
+        <span class="section-label">Dal blog</span>
+        <h2 id="featured-heading" class="section-title">Articoli in evidenza</h2>
+        <p class="section-subtitle">
+          I contenuti più recenti della community HablaSmart.
+        </p>
+      </header>
+
+      {featuredPosts.length > 0 ? (
+        <div class="posts-grid">
+          <!-- Primo articolo: card grande -->
+          <PostCard
+            post={featuredPosts[0]}
+            variant="featured"
+            readingTime={readingTime(featuredPosts[0].body)}
+            artIndex={0}
+            delay="0.1s"
+          />
+
+          <!-- Articoli secondari -->
+          {featuredPosts.length > 1 && (
+            <div class="posts-side">
+              {featuredPosts.slice(1).map((post, i) => (
+                <PostCard
+                  post={post}
+                  variant="compact"
+                  readingTime={readingTime(post.body)}
+                  artIndex={i + 1}
+                  delay={`${(i + 2) * 0.1}s`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <p class="posts-empty">Nessun articolo ancora pubblicato. Torna presto!</p>
+      )}
+
+      <div class="posts-cta reveal-up">
+        <a href="/articoli/" class="btn btn-outline"
+           aria-label="Vedi tutti gli articoli del blog HablaSmart">
+          Vedi tutti gli articoli <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       METODO
+  ============================================================ -->
+  <section class="method" aria-labelledby="method-heading" id="metodo">
+    <div class="container">
+
+      <header class="section-header reveal-up">
+        <span class="section-label">Il metodo HablaSmart</span>
+        <h2 id="method-heading" class="section-title">
+          Un processo.<br>Risultati concreti.
+        </h2>
+        <p class="section-subtitle">
+          Ogni contenuto di HablaSmart segue un framework di analisi rigoroso
+          che trasforma la teoria psicologica in strumenti pratici
+          e immediatamente applicabili.
+        </p>
+      </header>
+
+      <ol class="method-steps" role="list">
+        {steps.map(s => (
+          <li class="method-step reveal-up" style={`--delay: ${s.delay}`}>
+            <div class="step-number" aria-hidden="true">{s.num}</div>
+            <div class="step-content">
+              <h3 class="step-title">{s.title}</h3>
+              <p class="step-desc">{s.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER
+  ============================================================ -->
+  <section class="newsletter" aria-labelledby="newsletter-heading" id="newsletter">
+    <div class="container">
+      <div class="newsletter-inner reveal-up">
+
+        <div class="newsletter-badge" aria-hidden="true">✉</div>
+
+        <h2 id="newsletter-heading" class="newsletter-title">
+          Ogni settimana, un insight<br>che cambia prospettiva.
+        </h2>
+        <p class="newsletter-subtitle">
+          Iscriviti alla newsletter di HablaSmart: ogni venerdì ricevi
+          un'analisi approfondita su comunicazione, persuasione e AI.
+          Niente spam. Solo contenuti che vale la pena leggere.
+        </p>
+
+        <form
+          class="newsletter-form"
+          id="newsletter-form"
+          action="#"
+          method="POST"
+          aria-label="Modulo iscrizione newsletter HablaSmart"
+          novalidate
+        >
+          <div class="form-group">
+            <label for="newsletter-email" class="sr-only">Indirizzo email</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              class="form-input"
+              placeholder="La tua email"
+              required
+              autocomplete="email"
+              aria-required="true"
+              aria-describedby="newsletter-privacy"
+            />
+            <button type="submit" class="btn btn-primary btn-lg form-submit"
+                    aria-label="Iscriviti alla newsletter">
+              Iscriviti ora
+            </button>
+          </div>
+          <p id="newsletter-privacy" class="form-note">
+            Iscrivendoti accetti la nostra
+            <a href="/privacy/" class="form-link">Privacy Policy</a>.
+            Potrai disiscriverti in qualsiasi momento.
+          </p>
+        </form>
+
+        <div class="newsletter-stats" role="list">
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">2.4K+</span>
+            <span class="stat-label">iscritti</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true">·</div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">93%</span>
+            <span class="stat-label">tasso apertura</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true">·</div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number">0</span>
+            <span class="stat-label">spam, mai</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<!-- Newsletter form script -->
+<script>
+(function () {
+  const form  = document.getElementById('newsletter-form') as HTMLFormElement | null;
+  const input = document.getElementById('newsletter-email') as HTMLInputElement | null;
+  if (!form || !input) return;
+
+  let fb = document.getElementById('form-feedback');
+  if (!fb) {
+    fb = document.createElement('p');
+    fb.id = 'form-feedback';
+    fb.setAttribute('role', 'alert');
+    fb.setAttribute('aria-live', 'polite');
+    fb.style.cssText = 'margin-top:8px;font-size:.875rem;font-weight:600;text-align:center;min-height:20px';
+    form.appendChild(fb);
+  }
+
+  const show = (msg: string, ok: boolean) => {
+    fb!.textContent = msg;
+    fb!.style.color = ok ? 'rgba(134,239,172,.9)' : 'rgba(252,165,165,.9)';
+  };
+
+  input.addEventListener('input', () => { fb!.textContent = ''; });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (!email) { show('⚠ Inserisci il tuo indirizzo email.', false); input.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { show("⚠ L'email non sembra valida.", false); input.focus(); return; }
+
+    const btn = form.querySelector<HTMLButtonElement>('.form-submit')!;
+    btn.disabled = true;
+    btn.textContent = 'Iscrizione in corso…';
+
+    // TODO: sostituire con fetch reale al tuo provider (Mailchimp, ConvertKit, ecc.)
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = 'Iscriviti ora';
+      input.value = '';
+      show('✓ Iscrizione completata! Controlla la tua email.', true);
+    }, 1200);
+  });
+})();
+</script>
+
+<style>
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  padding: var(--space-20) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(124,58,237,.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(244,114,182,.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 560px;
+  animation: fadeInUp .8s cubic-bezier(.16,1,.3,1) both .1s;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-6);
+  border: 1px solid rgba(124,58,237,.15);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-3xl), 6vw, var(--text-5xl));
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.03em;
+}
+
+.hero-accent {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--space-8);
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
+}
+
+.btn-arrow { display: inline-block; transition: transform var(--transition-base); }
+.btn-ghost:hover .btn-arrow { transform: translateX(4px); }
+
+.hero-social-proof {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+}
+
+.proof-dot {
+  color: var(--color-secondary);
+  animation: pulse 2s ease-in-out infinite;
+  font-size: 10px;
+}
+
+/* ============================================================
+   HERO VISUAL (CSS Art)
+============================================================ */
+.hero-visual {
+  position: relative;
+  height: 480px;
+  animation: fadeIn 1s ease both .3s;
+}
+
+.abstract-shape {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.shape-1 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(124,58,237,.12) 0%, rgba(124,58,237,.02) 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: breathe 6s ease-in-out infinite;
+}
+.shape-2 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(244,114,182,.15) 0%, transparent 70%);
+  top: 10%; right: 5%;
+  animation: drift 8s ease-in-out infinite;
+}
+.shape-3 {
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(124,58,237,.1) 0%, transparent 70%);
+  bottom: 10%; left: 5%;
+  animation: drift 10s ease-in-out infinite reverse;
+}
+
+.abstract-grid {
+  position: absolute;
+  width: 280px; height: 280px;
+  background-image:
+    linear-gradient(rgba(124,58,237,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  border-radius: var(--radius-2xl);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(8deg);
+}
+
+.floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-5);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+  animation: float var(--float-dur, 5s) ease-in-out infinite;
+}
+.fc-icon  { font-size: var(--text-xl); line-height: 1; }
+.fc-text  { font-size: var(--text-xs); font-weight: 600; color: var(--color-text); line-height: 1.4; }
+
+.card-float-1 { top: 8%;   left: -5%;  --float-dur: 5s; animation-delay: -1s; }
+.card-float-2 { top: 30%;  right: -5%; --float-dur: 6s; animation-delay: -2s; }
+.card-float-3 { bottom:12%;left:  10%; --float-dur: 7s; animation-delay: -3s; }
+
+/* ============================================================
+   PILLARS
+============================================================ */
+.pillars {
+  padding: var(--space-32) 0;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: var(--space-6);
+}
+
+.pillar-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.pillar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); border-color: transparent; }
+.pillar-card:hover::before { opacity: 1; }
+
+.pillar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.pillar-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.pillar-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-bottom: var(--space-5);
+}
+
+.pillar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: gap var(--transition-fast);
+}
+.pillar-link:hover { gap: var(--space-3); }
+
+/* ============================================================
+   FEATURED POSTS
+============================================================ */
+.featured-posts {
+  padding: var(--space-32) 0;
+  background: linear-gradient(to bottom, var(--color-bg), var(--color-surface));
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+.posts-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.posts-empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-16) 0;
+}
+
+.posts-cta { text-align: center; }
+
+/* ============================================================
+   METODO
+============================================================ */
+.method {
+  padding: var(--space-32) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.method::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.method-steps {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+.method-step {
+  padding: var(--space-8);
+  border-top: 3px solid var(--color-border);
+  transition: border-color var(--transition-base);
+}
+.method-step:hover { border-top-color: var(--color-primary); }
+
+.step-number {
+  font-family: var(--font-serif);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-border);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+  transition: color var(--transition-base);
+  letter-spacing: -0.04em;
+}
+.method-step:hover .step-number { color: var(--color-primary-light); }
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.step-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.75; }
+
+/* ============================================================
+   NEWSLETTER
+============================================================ */
+.newsletter {
+  padding: var(--space-32) 0;
+  background: linear-gradient(135deg, #1e0a3c 0%, #2d1155 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -20%;
+  width: 80%; height: 200%;
+  background: radial-gradient(ellipse, rgba(244,114,182,.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.newsletter::after {
+  content: '';
+  position: absolute;
+  bottom: -30%; right: -10%;
+  width: 60%; height: 150%;
+  background: radial-gradient(ellipse, rgba(124,58,237,.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.newsletter-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px; height: 64px;
+  background: rgba(255,255,255,.1);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-6);
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+.newsletter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: var(--space-5);
+  letter-spacing: -0.02em;
+}
+
+.newsletter-subtitle {
+  font-size: var(--text-md);
+  color: rgba(255,255,255,.65);
+  line-height: 1.75;
+  margin-bottom: var(--space-10);
+}
+
+.newsletter-form { margin-bottom: var(--space-10); }
+
+.form-group {
+  display: flex;
+  gap: var(--space-3);
+  max-width: 480px;
+  margin: 0 auto var(--space-4);
+}
+
+.form-input {
+  flex: 1;
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: rgba(255,255,255,.95);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-full);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input::placeholder { color: var(--color-text-light); }
+.form-input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(124,58,237,.2); }
+
+.form-note { font-size: var(--text-xs); color: rgba(255,255,255,.4); text-align: center; }
+.form-link { color: rgba(255,255,255,.6); text-decoration: underline; transition: color var(--transition-fast); }
+.form-link:hover { color: rgba(255,255,255,.9); }
+
+.newsletter-stats { display: flex; align-items: center; justify-content: center; gap: var(--space-6); }
+.stat-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
+.stat-number { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.stat-label  { font-size: var(--text-xs); color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .08em; }
+.stat-divider{ font-size: var(--text-xl); color: rgba(255,255,255,.15); }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+  .hero-container { grid-template-columns: 1fr; gap: var(--space-12); }
+  .hero-visual { height: 360px; order: -1; }
+  .hero-content { max-width: 100%; text-align: center; }
+  .hero-actions, .hero-social-proof { justify-content: center; }
+  .pillars-grid { grid-template-columns: repeat(2,1fr); }
+  .method-steps { grid-template-columns: repeat(2,1fr); gap: var(--space-6); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: var(--space-16) 0; min-height: auto; }
+  .hero-title { font-size: var(--text-3xl); }
+  .hero-visual { height: 360px; }
+  .floating-card { padding: var(--space-2) var(--space-3); gap: var(--space-2); }
+  .fc-icon { font-size: var(--text-base); }
+  .fc-text { font-size: 10px; }
+  .card-float-1 { top: 4%;  left: 0; }
+  .card-float-2 { top: 38%; right: 0; }
+  .card-float-3 { bottom: 6%; left: 5%; }
+  .pillars, .featured-posts, .method { padding: var(--space-20) 0; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .method-steps { grid-template-columns: 1fr; gap: var(--space-8); }
+  .method-step { padding: var(--space-6) 0; }
+  .form-group { flex-direction: column; }
+  .form-submit { width: 100%; justify-content: center; }
+  .newsletter-stats { flex-wrap: wrap; gap: var(--space-4); }
+  .newsletter { padding: var(--space-16) 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+}
+</style>

@@ -1,0 +1,98 @@
+---
+/**
+ * PostCard.astro
+ * Card riutilizzabile per un articolo del blog.
+ * Usata in homepage e nella pagina /articoli/.
+ */
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  variant?: 'featured' | 'compact' | 'default';
+  readingTime: number;
+  artIndex?: number;
+  delay?: string;
+}
+
+const {
+  post,
+  variant = 'default',
+  readingTime,
+  artIndex = 0,
+  delay = '0s',
+} = Astro.props;
+
+const { title, description, pubDate, category, heroImage, heroImageAlt } = post.data;
+
+const dateFormatted = pubDate.toLocaleDateString('it-IT', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+});
+const dateISO = pubDate.toISOString().slice(0, 10);
+
+const arts = ['art-1', 'art-2', 'art-3'];
+const artClass = arts[artIndex % arts.length];
+
+const isFeatured = variant === 'featured';
+const isCompact  = variant === 'compact';
+---
+
+<article
+  class:list={['post-card', { 'post-card--featured': isFeatured, 'post-card--compact': isCompact }]}
+  style={`--delay: ${delay}`}
+  aria-labelledby={`post-title-${post.id}`}
+>
+  <!-- Immagine -->
+  <a href={`/articoli/${post.slug}/`} class="post-card-image-link" aria-hidden="true" tabindex="-1">
+    <div class:list={['post-card-image', { 'post-card-image--sm': !isFeatured }]}
+         role="img"
+         aria-label={heroImageAlt ?? title}>
+      {heroImage
+        ? <img src={heroImage} alt={heroImageAlt ?? title} loading="lazy" decoding="async" />
+        : (
+          <div class={`post-placeholder-art ${artClass}`} aria-hidden="true">
+            {artClass === 'art-1' && (
+              <>
+                <div class="art-circle c1"></div>
+                <div class="art-circle c2"></div>
+                <div class="art-line l1"></div>
+                <div class="art-line l2"></div>
+              </>
+            )}
+            {artClass === 'art-2' && <div class="art-grid-dots"></div>}
+            {artClass === 'art-3' && <div class="art-wave"></div>}
+          </div>
+        )
+      }
+    </div>
+  </a>
+
+  <!-- Corpo -->
+  <div class="post-card-body">
+    <div class="post-meta">
+      <span class="post-category">{category}</span>
+      <time class="post-date" datetime={dateISO}>{dateFormatted}</time>
+    </div>
+
+    <h3 id={`post-title-${post.id}`}
+        class:list={['post-title', { 'post-title--sm': !isFeatured }]}>
+      <a href={`/articoli/${post.slug}/`} class="post-title-link">
+        {title}
+      </a>
+    </h3>
+
+    <p class:list={['post-excerpt', { 'post-excerpt--sm': !isFeatured }]}>
+      {description}
+    </p>
+
+    <div class="post-footer">
+      <span class="post-read-time">⏱ {readingTime} min di lettura</span>
+      <a href={`/articoli/${post.slug}/`}
+         class="post-read-link"
+         aria-label={`Leggi: ${title}`}>
+        Leggi ora <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</article>

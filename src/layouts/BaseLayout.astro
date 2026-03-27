@@ -1,0 +1,167 @@
+---
+/**
+ * BaseLayout.astro
+ * Layout principale condiviso da tutte le pagine.
+ * Gestisce <head> SEO, Header e Footer.
+ */
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  pubDate?: Date;
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description = 'Blog italiano su comunicazione comportamentale, psicologia della persuasione, marketing e AI applicata ai contenuti.',
+  ogImage = '/og-image.jpg',
+  ogType = 'website',
+  pubDate,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+} = Astro.props;
+
+const siteName  = 'HablaSmart';
+const siteTitle = title
+  ? `${title} — ${siteName}`
+  : `${siteName} – Comunicazione, Persuasione e AI per Menti Curiose`;
+
+const ogImageURL = new URL(ogImage, Astro.site).href;
+---
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- ============================================================
+       META FONDAMENTALI
+  ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>{siteTitle}</title>
+  <meta name="description"  content={description} />
+  <meta name="author"       content={siteName} />
+  <meta name="robots"       content="index, follow" />
+  <link rel="canonical"     href={canonicalURL} />
+  <link rel="icon"          href="/favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap"       href="/sitemap-index.xml" />
+
+  <!-- ============================================================
+       OPEN GRAPH
+  ============================================================ -->
+  <meta property="og:type"        content={ogType} />
+  <meta property="og:url"         content={canonicalURL} />
+  <meta property="og:title"       content={siteTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image"       content={ogImageURL} />
+  <meta property="og:locale"      content="it_IT" />
+  <meta property="og:site_name"   content={siteName} />
+  {pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
+
+  <!-- ============================================================
+       TWITTER CARD
+  ============================================================ -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={siteTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image"       content={ogImageURL} />
+
+  <!-- Performance hint -->
+  <link rel="dns-prefetch" href="//hablas mart.vercel.app" />
+</head>
+
+<body>
+  <Header />
+
+  <main id="main-content" role="main">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- Script globale: scroll reveal + hamburger -->
+  <script>
+    /* ============================================================
+       SCROLL REVEAL — Intersection Observer
+    ============================================================ */
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }),
+        { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    })();
+
+    /* ============================================================
+       HEADER — scroll shadow
+    ============================================================ */
+    (function () {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+
+    /* ============================================================
+       HAMBURGER — mobile menu
+    ============================================================ */
+    (function () {
+      const btn  = document.getElementById('hamburger');
+      const menu = document.getElementById('mobile-menu');
+      if (!btn || !menu) return;
+      let open = false;
+      const toggle = () => {
+        open = !open;
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        menu.classList.toggle('open', open);
+        menu.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+      btn.addEventListener('click', toggle);
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (open) toggle(); }));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) toggle(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 768 && open) toggle(); }, { passive: true });
+    })();
+
+    /* ============================================================
+       SMOOTH SCROLL — anchor links
+    ============================================================ */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const offset = (document.getElementById('site-header')?.offsetHeight ?? 0) + 16;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+        history.pushState(null, '', id);
+      });
+    });
+  </script>
+</body>
+</html>

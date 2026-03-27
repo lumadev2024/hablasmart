@@ -1,0 +1,79 @@
+---
+/**
+ * src/pages/risorse/index.astro
+ * Pagina Work in Progress per la sezione Risorse.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Risorse – Work in Progress"
+  description="La sezione Risorse è in costruzione. Torna presto per scoprire template, guide e strumenti pratici."
+>
+  <section class="wip">
+    <div class="container wip-inner">
+      <div class="wip-icon" aria-hidden="true">⚠️</div>
+      <h1 class="wip-title">Stiamo costruendo qualcosa.</h1>
+      <p class="wip-desc">
+        La sezione Risorse è in lavorazione.<br>
+        Presto troverai template, guide pratiche e strumenti selezionati
+        per migliorare la tua comunicazione e il tuo marketing.
+      </p>
+      <div class="wip-actions">
+        <a href="/" class="btn btn-primary btn-lg">← Torna alla homepage</a>
+        <a href="/articoli/" class="btn btn-ghost btn-lg">Esplora gli articoli</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.wip {
+  min-height: calc(100vh - var(--header-height) - 200px);
+  display: flex;
+  align-items: center;
+  padding: var(--space-32) 0;
+}
+
+.wip-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.wip-icon {
+  font-size: clamp(4rem, 12vw, 8rem);
+  line-height: 1;
+  margin-bottom: var(--space-6);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.wip-title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wip-desc {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto var(--space-10);
+}
+
+.wip-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+</style>
