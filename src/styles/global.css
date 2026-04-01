@@ -7,18 +7,18 @@
    1. CUSTOM PROPERTIES
    ============================================================ */
 :root {
-  --color-bg:            #fafafa;
-  --color-surface:       #ffffff;
-  --color-text:          #111827;
-  --color-text-muted:    #6b7280;
-  --color-text-light:    #9ca3af;
-  --color-primary:       #7c3aed;
-  --color-primary-hover: #6d28d9;
-  --color-primary-light: #ede9fe;
-  --color-secondary:     #f472b6;
-  --color-secondary-light: #fdf2f8;
-  --color-border:        #e5e7eb;
-  --color-border-light:  #f3f4f6;
+  --color-bg:            #fdf8f3;
+  --color-surface:       #fffcf8;
+  --color-text:          #1c110a;
+  --color-text-muted:    #6b5d52;
+  --color-text-light:    #9c8e84;
+  --color-primary:       #8b3cf7;
+  --color-primary-hover: #7c2ee8;
+  --color-primary-light: #f2ecff;
+  --color-secondary:     #f4607a;
+  --color-secondary-light: #fff0f2;
+  --color-border:        #e8ddd4;
+  --color-border-light:  #f2ece6;
 
   --font-sans:  'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: Georgia, 'Times New Roman', Times, serif;
@@ -55,11 +55,11 @@
   --radius-2xl:  24px;
   --radius-full: 9999px;
 
-  --shadow-sm:  0 1px 2px 0 rgba(0,0,0,.05);
-  --shadow-md:  0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
-  --shadow-lg:  0 10px 15px -3px rgba(0,0,0,.08), 0 4px 6px -4px rgba(0,0,0,.05);
-  --shadow-xl:  0 20px 25px -5px rgba(0,0,0,.08), 0 8px 10px -6px rgba(0,0,0,.04);
-  --shadow-primary: 0 4px 20px rgba(124,58,237,.25);
+  --shadow-sm:  0 1px 2px 0 rgba(90,50,20,.06);
+  --shadow-md:  0 4px 6px -1px rgba(90,50,20,.09), 0 2px 4px -2px rgba(90,50,20,.06);
+  --shadow-lg:  0 10px 15px -3px rgba(90,50,20,.10), 0 4px 6px -4px rgba(90,50,20,.06);
+  --shadow-xl:  0 20px 25px -5px rgba(90,50,20,.10), 0 8px 10px -6px rgba(90,50,20,.05);
+  --shadow-primary: 0 4px 20px rgba(139,60,247,.28);
 
   --transition-fast:   150ms ease;
   --transition-base:   250ms ease;
@@ -282,9 +282,9 @@ p { color: var(--color-text-muted); line-height: 1.75; }
   position: relative;
   overflow: hidden;
 }
-.art-1 { background: linear-gradient(135deg, #ede9fe 0%, #fdf2f8 100%); }
-.art-2 { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); }
-.art-3 { background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%); }
+.art-1 { background: linear-gradient(135deg, #f2ecff 0%, #fff0f2 100%); }
+.art-2 { background: linear-gradient(135deg, #fef4e8 0%, #fdebd0 100%); }
+.art-3 { background: linear-gradient(135deg, #fde8e0 0%, #fdf0e8 100%); }
 
 .art-circle {
   position: absolute;
