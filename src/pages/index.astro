@@ -172,22 +172,24 @@ const steps = [
           </button>
         </div>
 
-        <!-- Chip flottanti -->
-        <div class="hero-chip chip-1">
-          <span class="chip-icon">💬</span>
-          <span class="chip-text">Comunicazione Comportamentale</span>
-        </div>
-        <div class="hero-chip chip-2">
-          <span class="chip-icon">🔄</span>
-          <span class="chip-text">Reframing Cognitivo</span>
-        </div>
-        <div class="hero-chip chip-3">
-          <span class="chip-icon">👁️</span>
-          <span class="chip-text">Linguaggio Non Verbale</span>
-        </div>
-        <div class="hero-chip chip-4">
-          <span class="chip-icon">🎯</span>
-          <span class="chip-text">Psicologia della Persuasione</span>
+        <!-- Chip raggruppati in alto a destra -->
+        <div class="hero-chips-group">
+          <div class="hero-chip chip-1">
+            <span class="chip-icon">💬</span>
+            <span class="chip-text">Comunicazione Comportamentale</span>
+          </div>
+          <div class="hero-chip chip-2">
+            <span class="chip-icon">🎯</span>
+            <span class="chip-text">Psicologia della Persuasione</span>
+          </div>
+          <div class="hero-chip chip-3">
+            <span class="chip-icon">🔄</span>
+            <span class="chip-text">Reframing Cognitivo</span>
+          </div>
+          <div class="hero-chip chip-4">
+            <span class="chip-icon">👁️</span>
+            <span class="chip-text">Linguaggio Non Verbale</span>
+          </div>
         </div>
 
       </div>
@@ -688,26 +690,29 @@ const steps = [
 }
 
 /* Posizioni e animazioni individuali */
-.chip-1 {
-  top: -4%; left: 8%;
-  animation: floatA 5.5s ease-in-out infinite;
-  animation-delay: -0.5s;
+/* Gruppo chip — angolo top-right del video */
+.hero-chips-group {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: flex-end;
 }
-.chip-4 {
-  top: -4%; right: 7%;
-  animation: floatA 8s ease-in-out infinite;
-  animation-delay: -1.5s;
+
+/* I chip dentro il gruppo sono statici (no absolute) */
+.hero-chips-group .hero-chip {
+  position: relative;
+  top: auto; right: auto; bottom: auto; left: auto;
 }
-.chip-2 {
-  bottom: -6%; right: 7%;
-  animation: floatB 7s ease-in-out infinite;
-  animation-delay: -2.5s;
-}
-.chip-3 {
-  bottom: -6%; left: 8%;
-  animation: floatC 6.5s ease-in-out infinite;
-  animation-delay: -4s;
-}
+
+/* Animazioni individuali */
+.chip-1 { animation: floatA 5.5s ease-in-out infinite; animation-delay: -0.5s; }
+.chip-2 { animation: floatB 7s   ease-in-out infinite; animation-delay: -2.5s; }
+.chip-3 { animation: floatC 6.5s ease-in-out infinite; animation-delay: -4s;   }
+.chip-4 { animation: floatA 8s   ease-in-out infinite; animation-delay: -1.5s; }
 
 /* ============================================================
    PILLARS
@@ -1172,10 +1177,7 @@ const steps = [
   .hero-chip { max-width: 172px; padding: var(--space-2) var(--space-3); }
   .chip-text { font-size: 10px; }
   .chip-icon { width: 24px; height: 24px; font-size: .9rem; }
-  .chip-1 { top: 10%; left: 5%; }
-  .chip-4 { top: 10%; right: 5%; }
-  .chip-2 { top: 47%; right: 5%; }
-  .chip-3 { bottom: 10%; left: 5%; }
+  .hero-chips-group { top: var(--space-3); right: var(--space-3); gap: var(--space-1); }
   .pillars, .featured-posts, .method { padding: var(--space-16) 0; }
   .pillars-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
