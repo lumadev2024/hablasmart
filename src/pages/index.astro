@@ -172,13 +172,7 @@ const steps = [
           </button>
         </div>
 
-        <!-- Etichette tematiche -->
-        <ul class="hero-topics">
-          <li>💬 Comunicazione Comportamentale</li>
-          <li>🎯 Psicologia della Persuasione</li>
-          <li>🔄 Reframing Cognitivo</li>
-          <li>👁️ Linguaggio Non Verbale</li>
-        </ul>
+        <p class="hero-video-credit"><em>dal film Thank You for Smoking</em></p>
 
       </div>
 
@@ -630,27 +624,14 @@ const steps = [
 }
 
 /* ── Hero Chips ─────────────────────────────────────── */
-.hero-topics {
+.hero-video-credit {
   position: absolute;
-  bottom: var(--space-6);
-  left: var(--space-6);
+  bottom: var(--space-4);
+  left: var(--space-5);
   z-index: 3;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.hero-topics li {
-  font-family: var(--font-serif);
-  font-size: var(--text-base);
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.55);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.55);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 /* ============================================================
@@ -1113,8 +1094,6 @@ const steps = [
   .hero-title { font-size: var(--text-2xl); }
   .hero-subtitle { font-size: var(--text-sm); }
   .hero-visual { height: 280px; }
-  .hero-topics { bottom: var(--space-4); left: var(--space-4); }
-  .hero-topics li { font-size: var(--text-sm); }
   .pillars, .featured-posts, .method { padding: var(--space-16) 0; }
   .pillars-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
@@ -1136,7 +1115,6 @@ const steps = [
   .hero { padding: var(--space-10) 0 var(--space-8); }
   .hero-title { font-size: var(--text-xl); }
   .hero-visual { height: 240px; }
-  .hero-topics li { font-size: var(--text-xs); }
 .newsletter-trust { flex-direction: column; align-items: center; gap: var(--space-2); }
   .pillars, .featured-posts, .method { padding: var(--space-12) 0; }
   .newsletter { padding: var(--space-10) 0; }
