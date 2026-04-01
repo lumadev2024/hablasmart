@@ -690,31 +690,36 @@ const steps = [
 }
 
 /* Posizioni e animazioni individuali */
+/* angolo top-left */
 .chip-1 {
-  top: 6%;  left: -2%;
+  top: 6%; left: 3%;
   animation: floatA 5.5s ease-in-out infinite;
   animation-delay: -0.5s;
 }
-.chip-2 {
-  top: 40%; right: 40%;
-  animation: floatB 7s ease-in-out infinite;
-  animation-delay: -2.5s;
-}
-.chip-3 {
-  bottom: 12%; left: 4%;
-  animation: floatC 6.5s ease-in-out infinite;
-  animation-delay: -4s;
-}
+/* angolo top-right */
 .chip-4 {
-  top: 14%; right: 6%;
+  top: 6%; right: 3%;
   animation: floatA 8s ease-in-out infinite;
   animation-delay: -1.5s;
 }
+/* centro-destra */
+.chip-2 {
+  top: 44%; right: 3%;
+  animation: floatB 7s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+/* angolo bottom-left */
+.chip-3 {
+  bottom: 7%; left: 3%;
+  animation: floatC 6.5s ease-in-out infinite;
+  animation-delay: -4s;
+}
+/* angolo bottom-right */
 .chip-count {
-  bottom: 30%; right: 2%;
+  bottom: 7%; right: 3%;
   animation: floatB 5s ease-in-out infinite;
   animation-delay: -3s;
-  opacity: .75;
+  opacity: .85;
 }
 .chip-count .chip-icon {
   background: transparent;
@@ -1132,10 +1137,10 @@ const steps = [
   inset: 0;
   background:
     radial-gradient(ellipse at center,
-      transparent 22%,
-      rgba(253, 248, 243, 0.35) 48%,
-      rgba(253, 248, 243, 0.75) 68%,
-      #fdf8f3 84%
+      transparent 64%,
+      rgba(253, 248, 243, 0.5) 80%,
+      rgba(253, 248, 243, 0.9) 91%,
+      #fdf8f3 100%
     );
   pointer-events: none;
   z-index: 1;
@@ -1188,11 +1193,11 @@ const steps = [
   .hero-chip { max-width: 172px; padding: var(--space-2) var(--space-3); }
   .chip-text { font-size: 10px; }
   .chip-icon { width: 24px; height: 24px; font-size: .9rem; }
-  .chip-1 { top: 4%;    left: 0;   }
-  .chip-2 { top: 38%;   right: 0;  }
-  .chip-3 { bottom: 6%; left: 2%;  }
-  .chip-4 { top: 18%;   right: 2%; }
-  .chip-count { bottom: 28%; right: 0; }
+  .chip-1 { top: 4%;    left: 2%;  }
+  .chip-4 { top: 4%;    right: 2%; }
+  .chip-2 { top: 44%;   right: 2%; }
+  .chip-3 { bottom: 5%; left: 2%;  }
+  .chip-count { bottom: 5%; right: 2%; }
   .pillars, .featured-posts, .method { padding: var(--space-16) 0; }
   .pillars-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
