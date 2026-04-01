@@ -16,10 +16,10 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const categories = [...new Set(allPosts.map(p => p.data.category))];
 
 const categoryLabels: Record<string, string> = {
-  'Comunicazione': 'Comunicazione Comportamentale',
-  'Marketing':     'Marketing con Psicologia',
-  'Persuasione':   'Psicologia della Persuasione',
-  'AI & Contenuti': 'AI Applicata ai Contenuti',
+  'Comportamento':    'Comunicazione Comportamentale',
+  'Marketing':        'Marketing con Psicologia',
+  'Persuasione':      'Psicologia della Persuasione',
+  'Comunicazione AI': "Comunicare con l'AI",
 };
 
 const pageTitle = 'Tutti gli articoli';
