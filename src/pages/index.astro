@@ -127,15 +127,14 @@ const steps = [
 
       <div class="hero-content">
         <p class="hero-pretitle">
-          Se le tue parole non funzionano, non è colpa del messaggio.
+          Se le tue parole non funzionano,<br>non è colpa del messaggio.
         </p>
         <h1 id="hero-heading" class="hero-title">
           È che non capisci come<br>
           <em class="hero-accent">decidono le persone.</em>
         </h1>
         <p class="hero-subtitle">
-          HablaSmart unisce psicologia, comunicazione e AI per trasformare
-          i tuoi contenuti e messaggi in strumenti che influenzano davvero.
+          HablaSmart unisce psicologia, comunicazione e AI per trasformare i tuoi contenuti e messaggi in strumenti che influenzano davvero.
         </p>
         <div class="hero-actions">
           <a href="/articoli/" class="btn btn-primary btn-lg"
@@ -161,29 +160,25 @@ const steps = [
         <div class="abstract-shape shape-2"></div>
         <div class="abstract-shape shape-3"></div>
         <div class="abstract-grid"></div>
-        <div class="hero-value-card">
-          <p class="hvc-label">Cosa impari qui</p>
-          <ul class="hvc-list">
-            <li>
-              <span class="hvc-icon">🧠</span>
-              Capire cosa influenza davvero le decisioni
-            </li>
-            <li>
-              <span class="hvc-icon">✍️</span>
-              Scrivere contenuti che convertono
-            </li>
-            <li>
-              <span class="hvc-icon">⚡</span>
-              Usare l'AI senza sembrare artificiale
-            </li>
-            <li>
-              <span class="hvc-icon">📐</span>
-              Applicare framework in 24 ore
-            </li>
-          </ul>
-          <div class="hvc-footer">
-            <span class="hvc-count">✦ {allPosts.length} articoli pubblicati</span>
-          </div>
+        <div class="hero-chip chip-1">
+          <span class="chip-icon">🧠</span>
+          <span class="chip-text">Capire cosa influenza le decisioni</span>
+        </div>
+        <div class="hero-chip chip-2">
+          <span class="chip-icon">✍️</span>
+          <span class="chip-text">Scrivere contenuti che convertono</span>
+        </div>
+        <div class="hero-chip chip-3">
+          <span class="chip-icon">⚡</span>
+          <span class="chip-text">Usare l'AI con metodo</span>
+        </div>
+        <div class="hero-chip chip-4">
+          <span class="chip-icon">📐</span>
+          <span class="chip-text">Framework pratici in 24 ore</span>
+        </div>
+        <div class="hero-chip chip-count">
+          <span class="chip-icon">✦</span>
+          <span class="chip-text">{allPosts.length} articoli pubblicati</span>
         </div>
       </div>
 
@@ -498,17 +493,18 @@ const steps = [
 }
 
 .hero-pretitle {
-  font-size: var(--text-md);
-  font-weight: 500;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-  margin-bottom: var(--space-4);
-  max-width: 420px;
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-lg), 2.2vw, var(--text-xl));
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
 }
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(var(--text-3xl), 5.5vw, var(--text-5xl));
+  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-4xl));
   line-height: 1.1;
   margin-bottom: var(--space-6);
   letter-spacing: -0.03em;
@@ -523,11 +519,11 @@ const steps = [
 }
 
 .hero-subtitle {
-  font-size: var(--text-md);
+  font-size: var(--text-base);
   color: var(--color-text-muted);
-  line-height: 1.8;
-  margin-bottom: var(--space-8);
+  line-height: 1.7;
   max-width: 480px;
+  margin-bottom: var(--space-6);
 }
 
 .hero-actions {
@@ -610,55 +606,40 @@ const steps = [
   transform: translate(-50%,-50%) rotate(8deg);
 }
 
-/* Hero Value Card */
-.hero-value-card {
+/* ── Hero Chips ─────────────────────────────────────── */
+@keyframes floatA {
+  0%,100% { transform: translateY(0)    rotate(-1.5deg); }
+  50%      { transform: translateY(-12px) rotate(1deg);  }
+}
+@keyframes floatB {
+  0%,100% { transform: translateY(0)    rotate(1deg);   }
+  50%      { transform: translateY(-9px)  rotate(-1.5deg); }
+}
+@keyframes floatC {
+  0%,100% { transform: translateY(0)    rotate(2deg);   }
+  50%      { transform: translateY(-14px) rotate(-1deg); }
+}
+
+.hero-chip {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(340px, 90%);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-6) var(--space-8);
-  box-shadow: var(--shadow-xl);
-  z-index: 2;
-  animation: float 7s ease-in-out infinite;
-}
-
-.hvc-label {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--color-primary);
-  margin-bottom: var(--space-4);
-}
-
-.hvc-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.hvc-list li {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-text);
-  line-height: 1.4;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2) var(--space-4);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+  max-width: 220px;
 }
 
-.hvc-icon {
-  font-size: var(--text-lg);
+.chip-icon {
+  font-size: 1.1rem;
+  line-height: 1;
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -666,16 +647,47 @@ const steps = [
   border-radius: var(--radius-md);
 }
 
-.hvc-footer {
-  margin-top: var(--space-5);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border-light);
-}
-
-.hvc-count {
+.chip-text {
   font-size: var(--text-xs);
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+/* Posizioni e animazioni individuali */
+.chip-1 {
+  top: 6%;  left: -2%;
+  animation: floatA 5.5s ease-in-out infinite;
+  animation-delay: -0.5s;
+}
+.chip-2 {
+  top: 40%; right: -6%;
+  animation: floatB 7s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+.chip-3 {
+  bottom: 12%; left: 4%;
+  animation: floatC 6.5s ease-in-out infinite;
+  animation-delay: -4s;
+}
+.chip-4 {
+  top: 14%; right: 6%;
+  animation: floatA 8s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+.chip-count {
+  bottom: 30%; right: 2%;
+  animation: floatB 5s ease-in-out infinite;
+  animation-delay: -3s;
+  opacity: .75;
+}
+.chip-count .chip-icon {
+  background: transparent;
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  width: auto;
+  height: auto;
+  padding: 0;
 }
 
 /* ============================================================
@@ -1070,7 +1082,14 @@ const steps = [
   .hero { padding: var(--space-16) 0; min-height: auto; }
   .hero-title { font-size: var(--text-3xl); }
   .hero-visual { height: 360px; }
-  .hero-value-card { padding: var(--space-5) var(--space-6); width: min(300px, 85%); }
+  .hero-chip { max-width: 180px; padding: var(--space-2) var(--space-3); }
+  .chip-text { font-size: 10px; }
+  .chip-icon { width: 24px; height: 24px; font-size: .9rem; }
+  .chip-1 { top: 4%;   left: 0;   }
+  .chip-2 { top: 38%;  right: 0;  }
+  .chip-3 { bottom: 6%; left: 2%; }
+  .chip-4 { top: 18%;  right: 2%; }
+  .chip-count { bottom: 28%; right: 0; }
   .pillars, .featured-posts, .method { padding: var(--space-20) 0; }
   .pillars-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
