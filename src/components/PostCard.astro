@@ -12,6 +12,7 @@ interface Props {
   readingTime: number;
   artIndex?: number;
   delay?: string;
+  badge?: string;
 }
 
 const {
@@ -20,9 +21,18 @@ const {
   readingTime,
   artIndex = 0,
   delay = '0s',
+  badge,
 } = Astro.props;
 
 const { title, description, pubDate, category, heroImage, heroImageAlt } = post.data;
+
+const categoryLabels: Record<string, string> = {
+  'Comunicazione': 'Comunicazione Comportamentale',
+  'Marketing':     'Marketing con Psicologia',
+  'Persuasione':   'Psicologia della Persuasione',
+  'AI & Contenuti': 'AI Applicata ai Contenuti',
+};
+const categoryLabel = categoryLabels[category] ?? category;
 
 const dateFormatted = pubDate.toLocaleDateString('it-IT', {
   day: '2-digit',
@@ -43,6 +53,10 @@ const isCompact  = variant === 'compact';
   style={`--delay: ${delay}`}
   aria-labelledby={`post-title-${post.id}`}
 >
+  {badge && (
+    <div class="post-card-badge" aria-label={badge}>{badge}</div>
+  )}
+
   <!-- Immagine -->
   <a href={`/articoli/${post.slug}/`} class="post-card-image-link" aria-hidden="true" tabindex="-1">
     <div class:list={['post-card-image', { 'post-card-image--sm': !isFeatured }]}
@@ -71,7 +85,7 @@ const isCompact  = variant === 'compact';
   <!-- Corpo -->
   <div class="post-card-body">
     <div class="post-meta">
-      <span class="post-category">{category}</span>
+      <span class="post-category">{categoryLabel}</span>
       <time class="post-date" datetime={dateISO}>{dateFormatted}</time>
     </div>
 
@@ -87,11 +101,11 @@ const isCompact  = variant === 'compact';
     </p>
 
     <div class="post-footer">
-      <span class="post-read-time">⏱ {readingTime} min di lettura</span>
+      <span class="post-read-time">⏱ {readingTime} min</span>
       <a href={`/articoli/${post.slug}/`}
          class="post-read-link"
          aria-label={`Leggi: ${title}`}>
-        Leggi ora <span aria-hidden="true">→</span>
+        Leggi in {readingTime} min <span aria-hidden="true">→</span>
       </a>
     </div>
   </div>

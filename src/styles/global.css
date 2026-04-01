@@ -242,6 +242,15 @@ p { color: var(--color-text-muted); line-height: 1.75; }
 /* ============================================================
    7. POST CARD (condivisa tra Homepage e Pagina Articoli)
    ============================================================ */
+.section-title-sub {
+  display: block;
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-top: var(--space-2);
+}
+
 .post-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -250,6 +259,22 @@ p { color: var(--color-text-muted); line-height: 1.75; }
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.post-card-badge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 2;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
 }
 
 .post-card:hover {

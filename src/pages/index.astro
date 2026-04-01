@@ -60,44 +60,56 @@ const homeSchema = JSON.stringify({
 const pillars = [
   {
     icon: `<path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2zm0 4a4 4 0 110 8 4 4 0 010-8zm0 17.2a8.8 8.8 0 01-7.333-3.928C8.253 17.36 11.053 16.4 14 16.4c2.947 0 5.747.96 7.333 2.872A8.8 8.8 0 0114 23.2z" fill="currentColor"/>`,
-    title: 'Comunicazione Comportamentale',
-    desc:  'Dalla prossemica digitale ai modelli di conversazione persuasiva: impara a leggere e costruire messaggi che vengono ascoltati davvero.',
-    href:  '/articoli/?categoria=Comunicazione',
-    label: 'comunicazione comportamentale',
-    delay: '0.1s',
+    title:    'Comunicazione Comportamentale',
+    hook:     'Capisci cosa le persone dicono davvero (anche quando non lo dicono).',
+    desc:     'Segnali, sottotesto e dinamiche invisibili che guidano ogni interazione.',
+    cta:      'Scopri come comunicare meglio',
+    href:     '/articoli/?categoria=Comunicazione',
+    label:    'comunicazione comportamentale',
+    delay:    '0.1s',
+    featured: false,
   },
   {
     icon: `<path d="M3 7h22v2H3V7zm0 6h22v2H3v-2zm0 6h14v2H3v-2z" fill="currentColor"/>`,
-    title: 'Marketing con Psicologia',
-    desc:  'Bias cognitivi, framing effect, social proof e nudge theory applicati a campagne reali. Il marketing che converte non è quello più rumoroso.',
-    href:  '/articoli/?categoria=Marketing',
-    label: 'marketing e psicologia',
-    delay: '0.2s',
+    title:    'Marketing con Psicologia',
+    hook:     'Le persone non scelgono in modo razionale.',
+    desc:     'Bias cognitivi e leve mentali applicate a contenuti e strategie che convertono.',
+    cta:      'Migliora i tuoi risultati',
+    href:     '/articoli/?categoria=Marketing',
+    label:    'marketing e psicologia',
+    delay:    '0.2s',
+    featured: true,
   },
   {
     icon: `<path d="M14 2L3 8v12l11 6 11-6V8L14 2zm0 3.09L22.09 9.5 14 13.91 5.91 9.5 14 5.09zM5 11.44l8 4.37V23.5L5 19.13V11.44zm10 12.06v-7.69l8-4.37v7.69L15 23.5z" fill="currentColor"/>`,
-    title: 'Psicologia della Persuasione',
-    desc:  'Da Cialdini ai moderni modelli di influence architecture: un viaggio nelle strutture mentali che guidano le decisioni.',
-    href:  '/articoli/?categoria=Persuasione',
-    label: 'psicologia della persuasione',
-    delay: '0.3s',
+    title:    'Psicologia della Persuasione',
+    hook:     'Ogni decisione è influenzata da schemi mentali precisi.',
+    desc:     'Impara come funzionano — e come usarli in modo consapevole.',
+    cta:      'Capisci cosa influenza davvero',
+    href:     '/articoli/?categoria=Persuasione',
+    label:    'psicologia della persuasione',
+    delay:    '0.3s',
+    featured: false,
   },
   {
     icon: `<path d="M22 10h-4V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h4v4l8-4h4a2 2 0 002-2v-6a2 2 0 00-2-2z" fill="currentColor"/>`,
-    title: 'AI Applicata ai Contenuti',
-    desc:  "Workflow, prompt design e strategia editoriale AI-assisted per produrre contenuti di qualità. L'AI amplifica la tua voce, non la sostituisce.",
-    href:  '/articoli/?categoria=AI+%26+Contenuti',
-    label: 'AI applicata ai contenuti',
-    delay: '0.4s',
+    title:    'AI Applicata ai Contenuti',
+    hook:     "L'AI non deve renderti più veloce. Deve renderti più efficace.",
+    desc:     'Workflow e sistemi per creare contenuti che funzionano davvero.',
+    cta:      "Usa l'AI con metodo",
+    href:     '/articoli/?categoria=AI+%26+Contenuti',
+    label:    'AI applicata ai contenuti',
+    delay:    '0.4s',
+    featured: false,
   },
 ];
 
 // Passi del metodo
 const steps = [
-  { num: '01', title: 'Osserva', delay: '0.1s', desc: 'Partiamo dai dati comportamentali reali: studi scientifici peer-reviewed, ricerche di neuroscienze applicate e analisi dei pattern comunicativi dei contesti digitali contemporanei.' },
-  { num: '02', title: 'Analizza', delay: '0.2s', desc: 'I meccanismi cognitivi vengono scomposti e reinterpretati nel contesto del marketing moderno. Niente semplificazioni inutili: la complessità resa accessibile senza essere tradita.' },
-  { num: '03', title: 'Applica', delay: '0.3s', desc: 'Ogni insight si traduce in un framework concreto, un template o un processo step-by-step. Puoi iniziare ad applicare ogni contenuto già nelle successive 24 ore dalla lettura.' },
-  { num: '04', title: 'Misura', delay: '0.4s', desc: 'La comunicazione efficace è misurabile. Impara a definire KPI comportamentali, interpretare i segnali di engagement e iterare la tua strategia basandoti su evidenze.' },
+  { num: '01', title: 'Capisci', delay: '0.1s', desc: 'Parti da ciò che le persone fanno davvero, non da quello che dicono. Comportamenti reali, non teorie astratte.' },
+  { num: '02', title: 'Analizza', delay: '0.2s', desc: 'Scomponiamo i meccanismi psicologici dietro ogni decisione. Solo ciò che conta davvero, senza semplificazioni inutili.' },
+  { num: '03', title: 'Trasforma', delay: '0.3s', desc: 'Ogni insight diventa un framework concreto, pronto da usare subito nei tuoi contenuti e nella tua comunicazione.' },
+  { num: '04', title: 'Ottimizza', delay: '0.4s', desc: 'Misuri, migliori e iteri. La comunicazione efficace non è fortuna: è metodo.' },
 ];
 ---
 
@@ -185,32 +197,36 @@ const steps = [
     <div class="container">
 
       <header class="section-header reveal-up">
-        <span class="section-label">Cosa trovi qui</span>
+        <span class="section-label">Il metodo HablaSmart</span>
         <h2 id="pillars-heading" class="section-title">
-          Quattro discipline.<br>Un'unica visione.
+          Non sono categorie.<br>È un sistema.
         </h2>
         <p class="section-subtitle">
-          HablaSmart non è un blog generico. Ogni contenuto è costruito attorno
-          a un sistema di pensiero coerente, dove scienza cognitiva e strategia
-          si incontrano per creare comunicazione che funziona davvero.
+          HablaSmart unisce psicologia, comportamento e AI per aiutarti
+          a smettere di improvvisare e iniziare a comunicare con metodo.
         </p>
       </header>
 
       <div class="pillars-grid">
         {pillars.map(p => (
-          <article class="pillar-card reveal-up" style={`--delay: ${p.delay}`}>
+          <a
+            href={p.href}
+            class={`pillar-card reveal-up${p.featured ? ' pillar-card--featured' : ''}`}
+            style={`--delay: ${p.delay}`}
+            aria-label={`Leggi articoli su ${p.label}`}
+          >
             <div class="pillar-icon" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
                 <Fragment set:html={p.icon} />
               </svg>
             </div>
             <h3 class="pillar-title">{p.title}</h3>
+            <p class="pillar-hook">{p.hook}</p>
             <p class="pillar-desc">{p.desc}</p>
-            <a href={p.href} class="pillar-link"
-               aria-label={`Leggi articoli su ${p.label}`}>
-              Esplora <span aria-hidden="true">→</span>
-            </a>
-          </article>
+            <span class="pillar-cta" aria-hidden="true">
+              {p.cta} <span class="pillar-arrow">→</span>
+            </span>
+          </a>
         ))}
       </div>
 
@@ -224,10 +240,14 @@ const steps = [
     <div class="container">
 
       <header class="section-header reveal-up">
-        <span class="section-label">Dal blog</span>
-        <h2 id="featured-heading" class="section-title">Articoli in evidenza</h2>
+        <span class="section-label">Se parti da zero, inizia da questi</span>
+        <h2 id="featured-heading" class="section-title">
+          Inizia da qui.<br>
+          <span class="section-title-sub">I contenuti che cambiano davvero come comunichi.</span>
+        </h2>
         <p class="section-subtitle">
-          I contenuti più recenti della community HablaSmart.
+          Una selezione degli articoli più utili per capire psicologia,
+          persuasione e contenuti — e applicarli subito.
         </p>
       </header>
 
@@ -240,6 +260,7 @@ const steps = [
             readingTime={readingTime(featuredPosts[0].body)}
             artIndex={0}
             delay="0.1s"
+            badge="Da leggere per primo"
           />
 
           <!-- Articoli secondari -->
@@ -263,8 +284,8 @@ const steps = [
 
       <div class="posts-cta reveal-up">
         <a href="/articoli/" class="btn btn-outline"
-           aria-label="Vedi tutti gli articoli del blog HablaSmart">
-          Vedi tutti gli articoli <span aria-hidden="true">→</span>
+           aria-label="Esplora tutti gli articoli del blog HablaSmart">
+          Esplora tutti gli articoli <span aria-hidden="true">→</span>
         </a>
       </div>
 
@@ -280,12 +301,12 @@ const steps = [
       <header class="section-header reveal-up">
         <span class="section-label">Il metodo HablaSmart</span>
         <h2 id="method-heading" class="section-title">
-          Un processo.<br>Risultati concreti.
+          Non è teoria.<br>
+          <span class="section-title-sub">È un metodo per ottenere risultati reali.</span>
         </h2>
         <p class="section-subtitle">
-          Ogni contenuto di HablaSmart segue un framework di analisi rigoroso
-          che trasforma la teoria psicologica in strumenti pratici
-          e immediatamente applicabili.
+          Ogni contenuto segue un sistema preciso: capire, interpretare e applicare
+          la psicologia per migliorare davvero come comunichi.
         </p>
       </header>
 
@@ -301,6 +322,10 @@ const steps = [
         ))}
       </ol>
 
+      <p class="method-payoff reveal-up">
+        È questo che trasforma contenuti in risultati.
+      </p>
+
     </div>
   </section>
 
@@ -311,15 +336,21 @@ const steps = [
     <div class="container">
       <div class="newsletter-inner reveal-up">
 
-        <div class="newsletter-badge" aria-hidden="true">✉</div>
+        <span class="newsletter-label">Ogni venerdì</span>
 
         <h2 id="newsletter-heading" class="newsletter-title">
-          Ogni settimana, un insight<br>che cambia prospettiva.
+          Se vuoi comunicare meglio,<br>devi capire meglio.<br>
+          <em class="newsletter-accent">Qui è dove inizi.</em>
         </h2>
         <p class="newsletter-subtitle">
-          Iscriviti alla newsletter di HablaSmart: ogni venerdì ricevi
-          un'analisi approfondita su comunicazione, persuasione e AI.
-          Niente spam. Solo contenuti che vale la pena leggere.
+          Ogni venerdì ricevi un'analisi chiara e applicabile su comunicazione,
+          persuasione e AI. Solo contenuti che puoi usare davvero.
+        </p>
+
+        <!-- Social proof sopra il form -->
+        <p class="newsletter-proof">
+          Unisciti a <strong>2.4K+ lettori</strong> che vogliono comunicare meglio
+          — tasso di apertura <strong>93%</strong>
         </p>
 
         <form
@@ -337,40 +368,31 @@ const steps = [
               id="newsletter-email"
               name="email"
               class="form-input"
-              placeholder="La tua email"
+              placeholder="Dove vuoi ricevere gli insight?"
               required
               autocomplete="email"
               aria-required="true"
               aria-describedby="newsletter-privacy"
             />
             <button type="submit" class="btn btn-primary btn-lg form-submit"
-                    aria-label="Iscriviti alla newsletter">
-              Iscriviti ora
+                    aria-label="Ricevi il prossimo insight">
+              Ricevi il prossimo insight
             </button>
           </div>
           <p id="newsletter-privacy" class="form-note">
             Iscrivendoti accetti la nostra
             <a href="/privacy/" class="form-link">Privacy Policy</a>.
-            Potrai disiscriverti in qualsiasi momento.
           </p>
         </form>
 
-        <div class="newsletter-stats" role="list">
-          <div class="stat-item" role="listitem">
-            <span class="stat-number">2.4K+</span>
-            <span class="stat-label">iscritti</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true">·</div>
-          <div class="stat-item" role="listitem">
-            <span class="stat-number">93%</span>
-            <span class="stat-label">tasso apertura</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true">·</div>
-          <div class="stat-item" role="listitem">
-            <span class="stat-number">0</span>
-            <span class="stat-label">spam, mai</span>
-          </div>
-        </div>
+        <!-- Micro-trust sotto il form -->
+        <ul class="newsletter-trust" aria-label="Garanzie newsletter">
+          <li><span aria-hidden="true">✔</span> 1 email a settimana</li>
+          <li><span aria-hidden="true">✔</span> Zero spam</li>
+          <li><span aria-hidden="true">✔</span> Disiscrizione in 1 click</li>
+        </ul>
+
+        <p class="newsletter-payoff">Leggi. Applica. Migliora.</p>
 
       </div>
     </div>
@@ -674,9 +696,14 @@ const steps = [
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-8);
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .pillar-card::before {
@@ -689,8 +716,24 @@ const steps = [
   transition: opacity var(--transition-base);
 }
 
-.pillar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); border-color: transparent; }
+.pillar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-light);
+}
 .pillar-card:hover::before { opacity: 1; }
+.pillar-card:hover .pillar-arrow { transform: translateX(4px); }
+
+/* Featured card */
+.pillar-card--featured {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light), var(--shadow-lg);
+}
+.pillar-card--featured::before { opacity: 1; }
+.pillar-card--featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 3px var(--color-primary-light), var(--shadow-xl);
+}
 
 .pillar-icon {
   display: inline-flex;
@@ -701,7 +744,9 @@ const steps = [
   color: var(--color-primary);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-5);
+  transition: background var(--transition-fast);
 }
+.pillar-card:hover .pillar-icon { background: var(--color-primary); color: #fff; }
 
 .pillar-title {
   font-family: var(--font-serif);
@@ -709,25 +754,39 @@ const steps = [
   font-weight: 700;
   margin-bottom: var(--space-3);
   letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.pillar-hook {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: var(--space-2);
 }
 
 .pillar-desc {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   line-height: 1.75;
+  flex: 1;
   margin-bottom: var(--space-5);
 }
 
-.pillar-link {
+.pillar-cta {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-primary);
-  transition: gap var(--transition-fast);
+  margin-top: auto;
 }
-.pillar-link:hover { gap: var(--space-3); }
+
+.pillar-arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
 
 /* ============================================================
    FEATURED POSTS
@@ -779,26 +838,47 @@ const steps = [
 .method-steps {
   display: grid;
   grid-template-columns: repeat(4,1fr);
+  position: relative;
 }
 
+/* Frecce connettive tra step */
 .method-step {
   padding: var(--space-8);
   border-top: 3px solid var(--color-border);
   transition: border-color var(--transition-base);
+  position: relative;
 }
-.method-step:hover { border-top-color: var(--color-primary); }
+.method-step:hover {
+  border-top-color: var(--color-primary);
+}
+.method-step:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  top: var(--space-8);
+  right: calc(-1 * var(--space-3));
+  font-size: var(--text-lg);
+  color: var(--color-border);
+  line-height: 1;
+  z-index: 1;
+  transition: color var(--transition-base);
+}
+.method-step:not(:last-child):hover::after {
+  color: var(--color-primary);
+}
 
+/* Numero grande, effetto watermark */
 .step-number {
   font-family: var(--font-serif);
-  font-size: var(--text-4xl);
+  font-size: clamp(var(--text-4xl), 7vw, 5rem);
   font-weight: 700;
   color: var(--color-border);
   line-height: 1;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
   transition: color var(--transition-base);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
+  user-select: none;
 }
-.method-step:hover .step-number { color: var(--color-primary-light); }
+.method-step:hover .step-number { color: var(--color-primary); }
 
 .step-title {
   font-family: var(--font-serif);
@@ -807,7 +887,31 @@ const steps = [
   margin-bottom: var(--space-3);
 }
 
-.step-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.75; }
+.step-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* Payoff finale */
+.method-payoff {
+  margin-top: var(--space-16);
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-style: italic;
+  color: var(--color-text-muted);
+  position: relative;
+}
+.method-payoff::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  margin: 0 auto var(--space-5);
+  border-radius: var(--radius-full);
+}
 
 /* ============================================================
    NEWSLETTER
@@ -844,16 +948,17 @@ const steps = [
   margin: 0 auto;
 }
 
-.newsletter-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px; height: 64px;
-  background: rgba(255,255,255,.1);
-  border-radius: var(--radius-xl);
-  font-size: var(--text-2xl);
-  margin-bottom: var(--space-6);
+.newsletter-label {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.5);
   border: 1px solid rgba(255,255,255,.15);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-6);
 }
 
 .newsletter-title {
@@ -861,19 +966,37 @@ const steps = [
   font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
   font-weight: 700;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.25;
   margin-bottom: var(--space-5);
   letter-spacing: -0.02em;
 }
 
-.newsletter-subtitle {
-  font-size: var(--text-md);
-  color: rgba(255,255,255,.65);
-  line-height: 1.75;
-  margin-bottom: var(--space-10);
+.newsletter-accent {
+  font-style: italic;
+  background: linear-gradient(135deg, #c4b5fd, #f9a8d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.newsletter-form { margin-bottom: var(--space-10); }
+.newsletter-subtitle {
+  font-size: var(--text-md);
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+  margin-bottom: var(--space-6);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-proof {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,.55);
+  margin-bottom: var(--space-8);
+}
+.newsletter-proof strong { color: rgba(255,255,255,.9); font-weight: 700; }
+
+.newsletter-form { margin-bottom: var(--space-5); }
 
 .form-group {
   display: flex;
@@ -901,11 +1024,35 @@ const steps = [
 .form-link { color: rgba(255,255,255,.6); text-decoration: underline; transition: color var(--transition-fast); }
 .form-link:hover { color: rgba(255,255,255,.9); }
 
-.newsletter-stats { display: flex; align-items: center; justify-content: center; gap: var(--space-6); }
-.stat-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
-.stat-number { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700; color: #fff; letter-spacing: -0.02em; }
-.stat-label  { font-size: var(--text-xs); color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .08em; }
-.stat-divider{ font-size: var(--text-xl); color: rgba(255,255,255,.15); }
+.newsletter-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-10);
+}
+.newsletter-trust li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,.5);
+}
+.newsletter-trust li span {
+  color: #a78bfa;
+  font-size: var(--text-xs);
+}
+
+.newsletter-payoff {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-base);
+  color: rgba(255,255,255,.3);
+  letter-spacing: 0.05em;
+}
 
 /* ============================================================
    RESPONSIVE
@@ -931,7 +1078,7 @@ const steps = [
   .method-step { padding: var(--space-6) 0; }
   .form-group { flex-direction: column; }
   .form-submit { width: 100%; justify-content: center; }
-  .newsletter-stats { flex-wrap: wrap; gap: var(--space-4); }
+  .newsletter-trust { gap: var(--space-4); }
   .newsletter { padding: var(--space-16) 0; }
 }
 
