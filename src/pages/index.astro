@@ -334,7 +334,7 @@ const steps = [
         <span class="newsletter-label">Ogni venerdì</span>
 
         <h2 id="newsletter-heading" class="newsletter-title">
-          Se vuoi comunicare meglio, devi capire meglio.<br>
+          <span style="white-space: nowrap">Se vuoi comunicare meglio, devi capire meglio.</span><br>
           <em class="newsletter-accent">Qui è dove inizi.</em>
         </h2>
         <p class="newsletter-subtitle">
@@ -1070,39 +1070,58 @@ const steps = [
    RESPONSIVE
 ============================================================ */
 @media (max-width: 1024px) {
-  .hero-container { grid-template-columns: 1fr; gap: var(--space-12); }
-  .hero-visual { height: 360px; order: -1; }
+  .hero-container { grid-template-columns: 1fr; gap: var(--space-10); }
+  .hero-visual { height: 340px; order: -1; }
   .hero-content { max-width: 100%; text-align: center; }
+  .hero-subtitle { max-width: 100%; }
   .hero-actions, .hero-micro-proof { justify-content: center; }
   .pillars-grid { grid-template-columns: repeat(2,1fr); }
   .method-steps { grid-template-columns: repeat(2,1fr); gap: var(--space-6); }
+  .method-step:nth-child(2)::after { display: none; }
 }
 
 @media (max-width: 768px) {
-  .hero { padding: var(--space-16) 0; min-height: auto; }
-  .hero-title { font-size: var(--text-3xl); }
-  .hero-visual { height: 360px; }
-  .hero-chip { max-width: 180px; padding: var(--space-2) var(--space-3); }
+  .hero { padding: var(--space-12) 0 var(--space-10); min-height: auto; }
+  .hero-pretitle { font-size: var(--text-base); }
+  .hero-title { font-size: var(--text-2xl); }
+  .hero-subtitle { font-size: var(--text-sm); }
+  .hero-visual { height: 280px; }
+  .hero-chip { max-width: 172px; padding: var(--space-2) var(--space-3); }
   .chip-text { font-size: 10px; }
   .chip-icon { width: 24px; height: 24px; font-size: .9rem; }
-  .chip-1 { top: 4%;   left: 0;   }
-  .chip-2 { top: 38%;  right: 0;  }
-  .chip-3 { bottom: 6%; left: 2%; }
-  .chip-4 { top: 18%;  right: 2%; }
+  .chip-1 { top: 4%;    left: 0;   }
+  .chip-2 { top: 38%;   right: 0;  }
+  .chip-3 { bottom: 6%; left: 2%;  }
+  .chip-4 { top: 18%;   right: 2%; }
   .chip-count { bottom: 28%; right: 0; }
-  .pillars, .featured-posts, .method { padding: var(--space-20) 0; }
+  .pillars, .featured-posts, .method { padding: var(--space-16) 0; }
   .pillars-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
-  .method-steps { grid-template-columns: 1fr; gap: var(--space-8); }
-  .method-step { padding: var(--space-6) 0; }
+  .method-steps { grid-template-columns: 1fr; gap: var(--space-6); }
+  .method-step { padding: var(--space-5) 0; }
+  .method-step:not(:last-child)::after { display: none; }
+  .method-payoff { margin-top: var(--space-10); font-size: var(--text-lg); }
+  .section-header { margin-bottom: var(--space-10); }
   .form-group { flex-direction: column; }
   .form-submit { width: 100%; justify-content: center; }
-  .newsletter-trust { gap: var(--space-4); }
-  .newsletter { padding: var(--space-16) 0; }
+  .newsletter-trust { gap: var(--space-3); }
+  .newsletter-trust li { font-size: var(--text-xs); }
+  .newsletter { padding: var(--space-12) 0; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 480px) {
-  .hero-actions { flex-direction: column; width: 100%; }
-  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero { padding: var(--space-10) 0 var(--space-8); }
+  .hero-title { font-size: var(--text-xl); }
+  .hero-visual { height: 240px; }
+  .hero-chip { max-width: 150px; }
+  .chip-text { font-size: 9px; }
+  .newsletter-title span { white-space: normal; }
+  .newsletter-trust { flex-direction: column; align-items: center; gap: var(--space-2); }
+  .pillars, .featured-posts, .method { padding: var(--space-12) 0; }
+  .newsletter { padding: var(--space-10) 0; }
+  .method-payoff { margin-top: var(--space-8); }
+  .step-number { font-size: var(--text-3xl); }
 }
 </style>

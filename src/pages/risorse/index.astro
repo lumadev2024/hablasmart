@@ -194,7 +194,7 @@ const ebooks = [
 
 .ebooks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: var(--space-8);
 }
 
@@ -346,7 +346,7 @@ const ebooks = [
 
 .garanzie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
   gap: var(--space-8);
 }
 
@@ -378,22 +378,20 @@ const ebooks = [
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .risorse-hero {
-    padding: var(--space-12) 0 var(--space-10);
-  }
+  .risorse-hero { padding: var(--space-12) 0 var(--space-8); }
+  .ebooks-grid { grid-template-columns: 1fr; }
+  .ebook-footer { flex-direction: column; align-items: flex-start; }
+  .btn-acquista { width: 100%; text-align: center; }
+  .garanzie-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
-  .ebooks-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ebook-footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .btn-acquista {
-    width: 100%;
-    text-align: center;
-  }
+@media (max-width: 480px) {
+  .risorse-hero { padding: var(--space-10) 0 var(--space-6); }
+  .risorse-title { font-size: var(--text-3xl); }
+  .ebook-cover { height: 140px; }
+  .ebook-body { padding: var(--space-4); }
+  .ebook-footer { padding: var(--space-3) var(--space-4) var(--space-4); }
+  .garanzie-grid { grid-template-columns: 1fr; }
+  .garanzie-section { padding: var(--space-10) 0; }
 }
 </style>

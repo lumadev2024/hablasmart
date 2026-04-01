@@ -325,7 +325,16 @@ const pageDesc  = 'Esplora tutti gli articoli di HablaSmart su comunicazione, ps
 @media (max-width: 768px) {
   .archive-hero { padding: var(--space-12) 0 var(--space-8); }
   .archive-grid { grid-template-columns: 1fr; }
+  .archive-grid-section { padding: var(--space-10) 0 var(--space-20); }
   .archive-cta-inner { flex-direction: column; text-align: center; }
-  .category-filters { gap: var(--space-2); }
+  .category-filters { gap: var(--space-2); justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: var(--space-2); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .category-filters::-webkit-scrollbar { display: none; }
+  .cat-btn { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); white-space: nowrap; flex-shrink: 0; }
+}
+
+@media (max-width: 480px) {
+  .archive-hero { padding: var(--space-10) 0 var(--space-6); }
+  .archive-title { font-size: var(--text-3xl); }
+  .archive-cta { padding: var(--space-10) 0; }
 }
 </style>
