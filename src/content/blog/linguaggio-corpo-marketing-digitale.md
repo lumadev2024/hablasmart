@@ -17,6 +17,8 @@ Sono invece il risultato di esperimenti in un contesto molto specifico — la co
 
 Questo malinteso è il punto di partenza perfetto per esplorare cosa *davvero* sappiamo sul linguaggio del corpo nel marketing digitale.
 
+![Logo HablaSmart](/HABLA SMART LOGO.png)
+
 ## Cosa Sopravvive nel Digitale
 
 La comunicazione non verbale non scompare nel digitale: si **trasforma**. Ecco i vettori principali.
