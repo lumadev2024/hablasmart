@@ -154,12 +154,25 @@ const steps = [
         </ul>
       </div>
 
-      <!-- Elemento visivo astratto CSS -->
+      <!-- Hero visual: video YouTube + chip flottanti -->
       <div class="hero-visual" aria-hidden="true">
-        <div class="abstract-shape shape-1"></div>
-        <div class="abstract-shape shape-2"></div>
-        <div class="abstract-shape shape-3"></div>
-        <div class="abstract-grid"></div>
+
+        <!-- Video di sfondo -->
+        <div class="hero-video-wrap">
+          <iframe
+            id="hero-yt-player"
+            src="https://www.youtube.com/embed/HTtJJsWi1y4?autoplay=1&mute=1&loop=1&playlist=HTtJJsWi1y4&controls=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+            allow="autoplay; encrypted-media"
+            loading="lazy"
+            title="HablaSmart preview"
+          ></iframe>
+          <div class="hero-video-vignette"></div>
+          <button id="hero-mute-btn" class="hero-video-mute-btn" aria-label="Attiva audio" title="Attiva audio">
+            🔇
+          </button>
+        </div>
+
+        <!-- Chip flottanti -->
         <div class="hero-chip chip-1">
           <span class="chip-icon">🧠</span>
           <span class="chip-text">Capire cosa influenza le decisioni</span>
@@ -180,6 +193,7 @@ const steps = [
           <span class="chip-icon">✦</span>
           <span class="chip-text">{allPosts.length} articoli pubblicati</span>
         </div>
+
       </div>
 
     </div>
@@ -338,19 +352,6 @@ const steps = [
           <em class="newsletter-accent">Qui è dove inizi.</em>
         </h2>
 
-        <!-- VIDEO YouTube -->
-        <div class="newsletter-video-wrap" aria-hidden="true">
-          <div class="newsletter-video-ratio">
-            <iframe
-              src="https://www.youtube.com/embed/HTtJJsWi1y4?autoplay=1&mute=1&loop=1&playlist=HTtJJsWi1y4&controls=0&rel=0&modestbranding=1&playsinline=1"
-              allow="autoplay; encrypted-media"
-              loading="lazy"
-              title="Newsletter preview"
-            ></iframe>
-          </div>
-          <div class="newsletter-video-vignette"></div>
-        </div>
-
         <p class="newsletter-subtitle">
           Ogni venerdì ricevi un'analisi chiara e applicabile su comunicazione,
           persuasione e AI. Solo contenuti che puoi usare davvero.
@@ -467,6 +468,26 @@ const steps = [
     }
   });
 })();
+</script>
+
+<!-- Hero video mute toggle -->
+<script>
+  const muteBtn = document.getElementById('hero-mute-btn');
+  const ytFrame = document.getElementById('hero-yt-player') as HTMLIFrameElement | null;
+  let muted = true;
+
+  muteBtn?.addEventListener('click', () => {
+    muted = !muted;
+    const cmd = muted ? 'mute' : 'unMute';
+    ytFrame?.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func: cmd, args: [] }), '*'
+    );
+    if (muteBtn) {
+      muteBtn.textContent  = muted ? '🔇' : '🔊';
+      muteBtn.title        = muted ? 'Attiva audio' : 'Disattiva audio';
+      muteBtn.setAttribute('aria-label', muted ? 'Attiva audio' : 'Disattiva audio');
+    }
+  });
 </script>
 
 <style>
@@ -1081,47 +1102,67 @@ const steps = [
 }
 
 /* ============================================================
-   NEWSLETTER VIDEO
+   HERO VIDEO
 ============================================================ */
-.newsletter-video-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto var(--space-8);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-}
-
-.newsletter-video-ratio {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.newsletter-video-ratio iframe {
+.hero-video-wrap {
   position: absolute;
   inset: 0;
-  width: 100%;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-video-wrap iframe {
+  position: absolute;
+  /* scale up per simulare cover: centra e ingrandisce */
+  top: 50%; left: 50%;
+  width: 177.78%; /* 16/9 × 100% */
   height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
   border: none;
-  display: block;
-  opacity: 0.82;
-  filter: brightness(0.88) saturate(1.1);
+  opacity: 0.78;
+  filter: brightness(0.92) saturate(1.05);
   pointer-events: none;
 }
 
-/* Vignette: fade radiale verso il viola scuro dello sfondo */
-.newsletter-video-vignette {
+/* Vignette: sfuma verso il bg caldo dell'hero */
+.hero-video-vignette {
   position: absolute;
   inset: 0;
   background:
     radial-gradient(ellipse at center,
-      transparent 28%,
-      rgba(22, 8, 50, 0.45) 52%,
-      rgba(22, 8, 50, 0.82) 70%,
-      #1a0838 84%
+      transparent 22%,
+      rgba(253, 248, 243, 0.35) 48%,
+      rgba(253, 248, 243, 0.75) 68%,
+      #fdf8f3 84%
     );
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Bottone mute */
+.hero-video-mute-btn {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.hero-video-mute-btn:hover {
+  background: #fff;
+  transform: scale(1.08);
 }
 
 /* ============================================================
