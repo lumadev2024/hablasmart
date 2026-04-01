@@ -4,12 +4,14 @@ description: "Come le distorsioni cognitive influenzano le decisioni d'acquisto 
 pubDate: 2024-03-10
 category: "Marketing"
 tags: ["bias cognitivi", "psicologia", "marketing", "decisioni"]
-heroImage: ""
-heroImageAlt: "Schema visivo dei principali bias cognitivi applicati al marketing"
+heroImage: "/HABLA SMART LOGO.png"
+heroImageAlt: "Logo HablaSmart"
 author: "HablaSmart"
 featured: true
 draft: false
 ---
+
+![Logo HablaSmart](/HABLA SMART LOGO.png)
 
 Le distorsioni cognitive non sono bug del cervello umano: sono **feature evolutive**. Il cervello umano elabora oltre 11 milioni di bit di informazioni al secondo, ma la coscienza ne gestisce consapevolmente solo 40. Il resto viene filtrato, semplificato e deciso attraverso scorciatoie mentali — i bias cognitivi.
 
