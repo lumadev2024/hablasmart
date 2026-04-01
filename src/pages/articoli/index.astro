@@ -15,6 +15,13 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 // Categorie uniche per i filtri
 const categories = [...new Set(allPosts.map(p => p.data.category))];
 
+const categoryLabels: Record<string, string> = {
+  'Comunicazione': 'Comunicazione Comportamentale',
+  'Marketing':     'Marketing con Psicologia',
+  'Persuasione':   'Psicologia della Persuasione',
+  'AI & Contenuti': 'AI Applicata ai Contenuti',
+};
+
 const pageTitle = 'Tutti gli articoli';
 const pageDesc  = 'Esplora tutti gli articoli di HablaSmart su comunicazione, psicologia della persuasione, marketing e AI applicata ai contenuti.';
 ---
@@ -48,7 +55,7 @@ const pageDesc  = 'Esplora tutti gli articoli di HablaSmart su comunicazione, ps
             class="cat-btn"
             data-filter-cat={cat}
           >
-            {cat} ({allPosts.filter(p => p.data.category === cat).length})
+            {categoryLabels[cat] ?? cat} ({allPosts.filter(p => p.data.category === cat).length})
           </a>
         ))}
       </nav>
