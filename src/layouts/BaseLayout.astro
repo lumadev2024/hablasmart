@@ -73,10 +73,32 @@ const ogImageURL = new URL(ogImage, Astro.site).href;
   <meta name="twitter:image"       content={ogImageURL} />
 
   <!-- Performance hint -->
-  <link rel="dns-prefetch" href="//hablas mart.vercel.app" />
+  <link rel="dns-prefetch" href="//www.youtube.com" />
+  <link rel="dns-prefetch" href="//i.ytimg.com" />
+
+  <style>
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      z-index: 9999;
+      padding: var(--space-3) var(--space-6);
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: var(--text-sm);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
+  </style>
 </head>
 
 <body>
+  <!-- Skip link — accessibilità tastiera (Priority 1) -->
+  <a href="#main-content" class="skip-link">Vai al contenuto</a>
+
   <Header />
 
   <main id="main-content" role="main">

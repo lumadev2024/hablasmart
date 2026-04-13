@@ -24,7 +24,7 @@ function isActive(href: string) {
 
     <!-- Logo -->
     <a href="/" class="logo" aria-label="HablaSmart – torna alla homepage">
-      <img src="/HABLA%20SMART%20LOGO.png" alt="HablaSmart" class="logo-img" height="36" width="auto">
+      <img src="/HABLA%20SMART%20LOGO.png" alt="HablaSmart" class="logo-img" height="36" width="180" loading="eager">
     </a>
 
     <!-- Nav desktop -->
@@ -146,6 +146,12 @@ function isActive(href: string) {
   margin-left: auto;
   border-radius: var(--radius-md);
   transition: background var(--transition-fast);
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .hamburger:hover { background: var(--color-border-light); }
 .hamburger-line {

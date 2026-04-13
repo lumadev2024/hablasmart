@@ -474,7 +474,7 @@ const steps = [
    HERO
 ============================================================ */
 .hero {
-  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
   display: flex;
   align-items: center;
   padding: var(--space-20) 0;
@@ -962,7 +962,8 @@ const steps = [
 
 .form-input {
   flex: 1;
-  padding: var(--space-4) var(--space-5);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   color: var(--color-text);
@@ -970,6 +971,7 @@ const steps = [
   border: 1.5px solid transparent;
   border-radius: var(--radius-full);
   outline: none;
+  touch-action: manipulation;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .form-input::placeholder { color: var(--color-text-light); }
