@@ -93,7 +93,7 @@ const articleSchema = JSON.stringify({
       </div>
 
       <!-- Titolo -->
-      <h1 class="post-hero-title">{title}</h1>
+      <h1 class="post-hero-title" style={`view-transition-name: post-title-${post.slug}`}>{title}</h1>
       <p class="post-hero-desc">{description}</p>
 
       <!-- Autore -->
@@ -119,6 +119,7 @@ const articleSchema = JSON.stringify({
           loading="eager"
           decoding="async"
           class="post-cover-img"
+          style={`view-transition-name: post-image-${post.slug}`}
         />
       </div>
     </div>

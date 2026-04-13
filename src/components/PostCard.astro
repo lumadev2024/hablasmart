@@ -49,7 +49,7 @@ const isCompact  = variant === 'compact';
 ---
 
 <article
-  class:list={['post-card', { 'post-card--featured': isFeatured, 'post-card--compact': isCompact }]}
+  class:list={['post-card reveal-up', { 'post-card--featured': isFeatured, 'post-card--compact': isCompact }]}
   style={`--delay: ${delay}`}
   aria-labelledby={`post-title-${post.id}`}
 >
@@ -61,7 +61,8 @@ const isCompact  = variant === 'compact';
   <a href={`/articoli/${post.slug}/`} class="post-card-image-link" aria-hidden="true" tabindex="-1">
     <div class:list={['post-card-image', { 'post-card-image--sm': !isFeatured }]}
          role="img"
-         aria-label={heroImageAlt ?? title}>
+         aria-label={heroImageAlt ?? title}
+         style={`view-transition-name: post-image-${post.slug}`}>
       {heroImage
         ? <img src={heroImage} alt={heroImageAlt ?? title} loading="lazy" decoding="async" />
         : (
@@ -90,7 +91,8 @@ const isCompact  = variant === 'compact';
     </div>
 
     <h3 id={`post-title-${post.id}`}
-        class:list={['post-title', { 'post-title--sm': !isFeatured }]}>
+        class:list={['post-title', { 'post-title--sm': !isFeatured }]}
+        style={`view-transition-name: post-title-${post.slug}`}>
       <a href={`/articoli/${post.slug}/`} class="post-title-link">
         {title}
       </a>

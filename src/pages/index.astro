@@ -184,7 +184,7 @@ const steps = [
   <section class="pillars" aria-labelledby="pillars-heading" id="pillars">
     <div class="container">
 
-      <header class="section-header reveal-up">
+      <header class="section-header reveal-scale">
         <span class="section-label">Il metodo HablaSmart</span>
         <h2 id="pillars-heading" class="section-title">
           Non sono categorie.<br>È un sistema.
@@ -196,10 +196,10 @@ const steps = [
       </header>
 
       <div class="pillars-grid">
-        {pillars.map(p => (
+        {pillars.map((p, i) => (
           <a
             href={p.href}
-            class={`pillar-card reveal-up${p.featured ? ' pillar-card--featured' : ''}`}
+            class={`pillar-card ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}${p.featured ? ' pillar-card--featured' : ''}`}
             style={`--delay: ${p.delay}`}
             aria-label={`Leggi articoli su ${p.label}`}
           >
@@ -227,7 +227,7 @@ const steps = [
   <section class="featured-posts" aria-labelledby="featured-heading" id="articoli">
     <div class="container">
 
-      <header class="section-header reveal-up">
+      <header class="section-header reveal-fade">
         <span class="section-label">Se parti da zero, inizia da questi</span>
         <h2 id="featured-heading" class="section-title">
           Inizia da qui.<br>
@@ -286,7 +286,7 @@ const steps = [
   <section class="method" aria-labelledby="method-heading" id="metodo">
     <div class="container">
 
-      <header class="section-header reveal-up">
+      <header class="section-header reveal-right">
         <span class="section-label">Il metodo HablaSmart</span>
         <h2 id="method-heading" class="section-title">
           Non è teoria.<br>
@@ -322,7 +322,7 @@ const steps = [
   ============================================================ -->
   <section class="newsletter" aria-labelledby="newsletter-heading" id="newsletter">
     <div class="container">
-      <div class="newsletter-inner reveal-up">
+      <div class="newsletter-inner reveal-scale">
 
         <span class="newsletter-label">Ogni venerdì</span>
 

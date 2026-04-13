@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
+    "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.100.1",
     "@vercel/node": "^5.6.21",
     "astro": "^4.16.19",
