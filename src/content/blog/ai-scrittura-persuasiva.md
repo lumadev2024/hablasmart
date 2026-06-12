@@ -1,8 +1,8 @@
----
+﻿---
 title: "Come l'AI sta Ridefinendo la Scrittura Persuasiva"
 description: "I modelli linguistici non scrivono per te: ti permettono di scrivere meglio. Un framework pratico per integrare l'AI nel tuo processo creativo senza perdere voce e autenticità."
 pubDate: 2024-03-03
-category: "Comunicazione AI"
+category: "IA & Relazioni"
 tags: ["AI", "scrittura", "contenuti", "ChatGPT", "prompt design"]
 heroImage: ""
 heroImageAlt: "Rappresentazione visiva di reti neurali e processo di scrittura creativa"

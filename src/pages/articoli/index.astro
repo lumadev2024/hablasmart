@@ -16,14 +16,13 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const categories = [...new Set(allPosts.map(p => p.data.category))];
 
 const categoryLabels: Record<string, string> = {
-  'Comportamento':    'Comunicazione Comportamentale',
-  'Marketing':        'Marketing con Psicologia',
-  'Persuasione':      'Psicologia della Persuasione',
-  'Comunicazione AI': "Comunicare con l'AI",
+  'Relazioni':     'Relazioni',
+  'Gruppi':        'Gruppi',
+  'IA & Relazioni': 'IA & Relazioni',
 };
 
 const pageTitle = 'Tutti gli articoli';
-const pageDesc  = 'Esplora tutti gli articoli di HablaSmart su comunicazione, psicologia della persuasione, marketing e AI applicata ai contenuti.';
+const pageDesc  = 'Esplora tutti gli articoli di HablaSmart su relazioni, dinamiche di gruppo e intelligenza artificiale applicata alla comunicazione.';
 ---
 
 <BaseLayout title={pageTitle} description={pageDesc}>

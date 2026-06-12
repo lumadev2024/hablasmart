@@ -22,10 +22,9 @@ const blogCollection = defineCollection({
 
     /** Categoria principale (obbligatorio) */
     category: z.enum([
-      'Comportamento',
-      'Marketing',
-      'Persuasione',
-      'Comunicazione AI',
+      'Relazioni',
+      'Gruppi',
+      'IA & Relazioni',
     ]),
 
     /** Tag aggiuntivi (opzionale) */

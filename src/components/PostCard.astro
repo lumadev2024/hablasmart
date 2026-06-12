@@ -26,13 +26,7 @@ const {
 
 const { title, description, pubDate, category, heroImage, heroImageAlt } = post.data;
 
-const categoryLabels: Record<string, string> = {
-  'Comunicazione': 'Comunicazione Comportamentale',
-  'Marketing':     'Marketing con Psicologia',
-  'Persuasione':   'Psicologia della Persuasione',
-  'AI & Contenuti': 'AI Applicata ai Contenuti',
-};
-const categoryLabel = categoryLabels[category] ?? category;
+const categoryLabel = category;
 
 const dateFormatted = pubDate.toLocaleDateString('it-IT', {
   day: '2-digit',
@@ -86,7 +80,7 @@ const isCompact  = variant === 'compact';
   <!-- Corpo -->
   <div class="post-card-body">
     <div class="post-meta">
-      <span class="post-category">{categoryLabel}</span>
+      <span class="post-category" data-cat={category}>{categoryLabel}</span>
       <time class="post-date" datetime={dateISO}>{dateFormatted}</time>
     </div>
 

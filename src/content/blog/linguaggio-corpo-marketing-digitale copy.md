@@ -1,8 +1,8 @@
----
+﻿---
 title: "Linguaggio del Corpo nel Marketing Digitale: Miti e Verità"
 description: "Esiste davvero un linguaggio del corpo digitale? Analisi scientifica di come la comunicazione non verbale sopravvive e muta nelle interazioni online."
 pubDate: 2024-02-25
-category: "Comportamento"
+category: "Relazioni"
 tags: ["comunicazione non verbale", "marketing digitale", "video", "psicologia"]
 heroImage: ""
 heroImageAlt: "Forme geometriche astratte che rappresentano pattern di comunicazione non verbale"

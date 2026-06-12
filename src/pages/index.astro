@@ -56,51 +56,43 @@ const homeSchema = JSON.stringify({
   ],
 });
 
-// Pilastri editoriali
+// Pilastri editoriali — 3 sezioni tematiche
 const pillars = [
   {
-    icon: `<path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2zm0 4a4 4 0 110 8 4 4 0 010-8zm0 17.2a8.8 8.8 0 01-7.333-3.928C8.253 17.36 11.053 16.4 14 16.4c2.947 0 5.747.96 7.333 2.872A8.8 8.8 0 0114 23.2z" fill="currentColor"/>`,
-    title:    'Comunicazione Comportamentale',
-    hook:     'Capisci cosa le persone dicono davvero (anche quando non lo dicono).',
-    desc:     'Segnali, sottotesto e dinamiche invisibili che guidano ogni interazione.',
-    cta:      'Scopri come comunicare meglio',
-    href:     '/articoli/?categoria=Comportamento',
-    label:    'comunicazione comportamentale',
+    icon: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor"/>`,
+    title:    'Relazioni',
+    hook:     'Capisci cosa le persone dicono davvero — anche quando non parlano.',
+    desc:     'Dinamiche relazionali, comunicazione non verbale, ascolto attivo e connessioni che durano.',
+    cta:      'Esplora Relazioni',
+    href:     '/relazioni/',
+    label:    'relazioni e comunicazione',
     delay:    '0.1s',
-    featured: false,
+    colorVar: '--color-relazioni',
+    colorLight: '--color-relazioni-light',
   },
   {
-    icon: `<path d="M3 7h22v2H3V7zm0 6h22v2H3v-2zm0 6h14v2H3v-2z" fill="currentColor"/>`,
-    title:    'Marketing con Psicologia',
-    hook:     'Le persone non scelgono in modo razionale.',
-    desc:     'Bias cognitivi e leve mentali applicate a contenuti e strategie che convertono.',
-    cta:      'Migliora i tuoi risultati',
-    href:     '/articoli/?categoria=Marketing',
-    label:    'marketing e psicologia',
+    icon: `<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/>`,
+    title:    'Gruppi',
+    hook:     'I gruppi hanno una mente propria — impara a parlare ad essa.',
+    desc:     'Dinamiche di gruppo, leadership comunicativa, marketing sociale e persuasione collettiva.',
+    cta:      'Esplora Gruppi',
+    href:     '/gruppi/',
+    label:    'gruppi e dinamiche collettive',
     delay:    '0.2s',
-    featured: false,
+    colorVar: '--color-gruppi',
+    colorLight: '--color-gruppi-light',
   },
   {
-    icon: `<path d="M14 2L3 8v12l11 6 11-6V8L14 2zm0 3.09L22.09 9.5 14 13.91 5.91 9.5 14 5.09zM5 11.44l8 4.37V23.5L5 19.13V11.44zm10 12.06v-7.69l8-4.37v7.69L15 23.5z" fill="currentColor"/>`,
-    title:    'Psicologia della Persuasione',
-    hook:     'Ogni decisione è influenzata da schemi mentali precisi.',
-    desc:     'Impara come funzionano — e come usarli in modo consapevole.',
-    cta:      'Capisci cosa influenza davvero',
-    href:     '/articoli/?categoria=Persuasione',
-    label:    'psicologia della persuasione',
+    icon: `<path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z" fill="currentColor"/>`,
+    title:    'IA & Relazioni',
+    hook:     "L'AI cambia come comunichiamo. Devi capire come — prima degli altri.",
+    desc:     "Intelligenza artificiale applicata alle relazioni: contenuti, empatia algorítmica e nuovi linguaggi.",
+    cta:      'Esplora IA & Relazioni',
+    href:     '/ia-relazioni/',
+    label:    'IA e relazioni umane',
     delay:    '0.3s',
-    featured: false,
-  },
-  {
-    icon: `<path d="M22 10h-4V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h4v4l8-4h4a2 2 0 002-2v-6a2 2 0 00-2-2z" fill="currentColor"/>`,
-    title:    "Comunicare con l'AI",
-    hook:     "L'AI non deve renderti più veloce. Deve renderti più efficace.",
-    desc:     'Workflow e sistemi per creare contenuti che funzionano davvero.',
-    cta:      "Usa l'AI con metodo",
-    href:     '/articoli/?categoria=Comunicazione+AI',
-    label:    "comunicare con l'AI",
-    delay:    '0.4s',
-    featured: false,
+    colorVar: '--color-ia',
+    colorLight: '--color-ia-light',
   },
 ];
 
@@ -199,12 +191,12 @@ const steps = [
         {pillars.map((p, i) => (
           <a
             href={p.href}
-            class={`pillar-card ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}${p.featured ? ' pillar-card--featured' : ''}`}
-            style={`--delay: ${p.delay}`}
+            class={`pillar-card ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`}
+            style={`--delay: ${p.delay}; --pillar-color: var(${p.colorVar}); --pillar-light: var(${p.colorLight})`}
             aria-label={`Leggi articoli su ${p.label}`}
           >
             <div class="pillar-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <Fragment set:html={p.icon} />
               </svg>
             </div>
@@ -642,7 +634,7 @@ const steps = [
 
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: var(--space-6);
 }
 
@@ -665,43 +657,35 @@ const steps = [
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  height: 4px;
+  background: var(--pillar-color, var(--color-primary));
   opacity: 0;
   transition: opacity var(--transition-base);
 }
 
 .pillar-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary-light);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--pillar-color, var(--color-primary));
 }
 .pillar-card:hover::before { opacity: 1; }
 .pillar-card:hover .pillar-arrow { transform: translateX(4px); }
-
-/* Featured card */
-.pillar-card--featured {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-light), var(--shadow-lg);
-}
-.pillar-card--featured::before { opacity: 1; }
-.pillar-card--featured:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 0 3px var(--color-primary-light), var(--shadow-xl);
-}
 
 .pillar-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 52px; height: 52px;
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--pillar-light, var(--color-primary-light));
+  color: var(--pillar-color, var(--color-primary));
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-5);
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
-.pillar-card:hover .pillar-icon { background: var(--color-primary); color: #fff; }
+.pillar-card:hover .pillar-icon {
+  background: var(--pillar-color, var(--color-primary));
+  color: #fff;
+}
 
 .pillar-title {
   font-family: var(--font-serif);
@@ -734,7 +718,7 @@ const steps = [
   gap: var(--space-2);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--pillar-color, var(--color-primary));
   margin-top: auto;
 }
 
@@ -1067,9 +1051,13 @@ const steps = [
   .hero-content { max-width: 100%; text-align: center; }
   .hero-subtitle { max-width: 100%; }
   .hero-actions, .hero-micro-proof { justify-content: center; }
-  .pillars-grid { grid-template-columns: repeat(2,1fr); }
+  .pillars-grid { grid-template-columns: repeat(3,1fr); }
   .method-steps { grid-template-columns: repeat(2,1fr); gap: var(--space-6); }
   .method-step:nth-child(2)::after { display: none; }
+}
+
+@media (max-width: 860px) {
+  .pillars-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -1079,7 +1067,6 @@ const steps = [
   .hero-subtitle { font-size: var(--text-sm); }
   .hero-visual { height: 280px; }
   .pillars, .featured-posts, .method { padding: var(--space-16) 0; }
-  .pillars-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
   .method-steps { grid-template-columns: 1fr; gap: var(--space-6); }
   .method-step { padding: var(--space-5) 0; }

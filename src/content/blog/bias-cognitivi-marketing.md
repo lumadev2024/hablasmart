@@ -1,8 +1,8 @@
----
+﻿---
 title: "I 7 Bias Cognitivi che Ogni Marketer Dovrebbe Conoscere"
 description: "Come le distorsioni cognitive influenzano le decisioni d'acquisto e come usarle eticamente nelle tue campagne di marketing."
 pubDate: 2024-03-10
-category: "Marketing"
+category: "Gruppi"
 tags: ["bias cognitivi", "psicologia", "marketing", "decisioni"]
 heroImage: "/HABLA%20SMART%20LOGO.png"
 heroImageAlt: "Logo HablaSmart"
