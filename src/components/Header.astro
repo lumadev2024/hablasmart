@@ -41,7 +41,7 @@ function isActive(href: string) {
     </nav>
 
     <!-- CTA -->
-    <a href="/#newsletter" class="btn btn-primary btn-sm header-cta"
+    <a href="/#newsletter" class="btn btn-primary header-cta"
        aria-label="Iscriviti alla newsletter">
       Iscriviti
     </a>
@@ -183,7 +183,13 @@ function isActive(href: string) {
   background: var(--color-ia-light);
 }
 
-.header-cta { flex-shrink: 0; margin-left: var(--space-4); }
+.header-cta {
+  flex-shrink: 0;
+  margin-left: var(--space-4);
+  padding: var(--space-2) var(--space-6);
+  font-size: var(--text-sm);
+  min-height: 38px;
+}
 
 /* Hamburger */
 .hamburger {
