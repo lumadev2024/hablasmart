@@ -172,8 +172,8 @@ const pageDesc  = 'Esplora tutti gli articoli di HablaSmart su relazioni, dinami
     }
   }
 
-  applyFilters();
-  window.addEventListener('popstate', applyFilters);
+  // Esegue ad ogni navigazione (view transitions incluse) e al caricamento iniziale
+  document.addEventListener('astro:page-load', applyFilters);
 </script>
 
 <style>
