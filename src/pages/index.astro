@@ -181,10 +181,10 @@ const steps = [
         <h2 id="pillars-heading" class="section-title">
           Non sono categorie.<br>È un sistema.
         </h2>
-        <p class="section-subtitle">
+        <!--<p class="section-subtitle">
           HablaSmart unisce psicologia, comportamento e AI per aiutarti
           a smettere di improvvisare e iniziare a comunicare con metodo.
-        </p>
+        </p>-->
       </header>
 
       <div class="pillars-grid">
@@ -319,20 +319,34 @@ const steps = [
         <span class="newsletter-label">Ogni venerdì</span>
 
         <h2 id="newsletter-heading" class="newsletter-title">
-          Se vuoi comunicare meglio, devi capire meglio.<br>
-          <em class="newsletter-accent">Qui è dove inizi.</em>
+          Sotto ogni relazione c'è molto più<br>di quello che si vede.
+          <em class="newsletter-accent">Ogni venerdì, osserviamo insieme.</em>
         </h2>
 
         <p class="newsletter-subtitle">
-          Ogni venerdì ricevi un'analisi chiara e applicabile su comunicazione,
-          persuasione e AI. Solo contenuti che puoi usare davvero.
+          Riflessioni e analisi su relazioni umane, dinamiche di gruppo,
+          comportamento e intelligenza artificiale. Per chi vuole capire davvero
+          — non solo comunicare meglio.
         </p>
 
-        <!-- Social proof sopra il form -->
-        <p class="newsletter-proof">
-          Unisciti a <strong>2.4K+ lettori</strong> che vogliono comunicare meglio
-          — tasso di apertura <strong>93%</strong>
-        </p>
+        <!-- Esempi di insight recenti -->
+        <div class="newsletter-examples" aria-label="Esempi di riflessioni recenti">
+          <p class="newsletter-examples-label">Riflessioni recenti</p>
+          <ul class="newsletter-examples-list">
+            <li class="newsletter-example-item">
+              <span class="example-dot" aria-hidden="true"></span>
+              <span>La solitudine nascosta delle persone più socievoli</span>
+            </li>
+            <li class="newsletter-example-item">
+              <span class="example-dot" aria-hidden="true"></span>
+              <span>Come nasce un leader in un gruppo senza che nessuno lo nomini</span>
+            </li>
+            <li class="newsletter-example-item">
+              <span class="example-dot" aria-hidden="true"></span>
+              <span>Possiamo davvero costruire una relazione con un'intelligenza artificiale?</span>
+            </li>
+          </ul>
+        </div>
 
         <form
           class="newsletter-form"
@@ -349,15 +363,15 @@ const steps = [
               id="newsletter-email"
               name="email"
               class="form-input"
-              placeholder="Dove vuoi ricevere gli insight?"
+              placeholder="La tua email"
               required
               autocomplete="email"
               aria-required="true"
               aria-describedby="newsletter-privacy"
             />
             <button type="submit" class="btn btn-primary btn-lg form-submit"
-                    aria-label="Ricevi il prossimo insight">
-              Ricevi il prossimo insight
+                    aria-label="Iscriviti alla newsletter">
+              Iscriviti gratis
             </button>
           </div>
           <p id="newsletter-privacy" class="form-note">
@@ -366,14 +380,14 @@ const steps = [
           </p>
         </form>
 
-        <!-- Micro-trust sotto il form -->
+        <!-- Micro-trust -->
         <ul class="newsletter-trust" aria-label="Garanzie newsletter">
-          <li><span aria-hidden="true">✔</span> 1 email a settimana</li>
-          <li><span aria-hidden="true">✔</span> Zero spam</li>
+          <li><span aria-hidden="true">✔</span> 1 riflessione a settimana</li>
+          <li><span aria-hidden="true">✔</span> Solo analisi, zero spam</li>
           <li><span aria-hidden="true">✔</span> Disiscrizione in 1 click</li>
         </ul>
 
-        <p class="newsletter-payoff">Leggi. Applica. Migliora.</p>
+        <p class="newsletter-payoff">Osserva. Rifletti. Comprendi.</p>
 
       </div>
     </div>
@@ -883,7 +897,7 @@ const steps = [
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -928,12 +942,52 @@ const steps = [
   margin-right: auto;
 }
 
-.newsletter-proof {
-  font-size: var(--text-sm);
-  color: rgba(255,255,255,.55);
-  margin-bottom: var(--space-8);
+/* Esempi di insight recenti */
+.newsletter-examples {
+  margin: 0 auto var(--space-10);
+  max-width: 560px;
+  text-align: left;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-8);
 }
-.newsletter-proof strong { color: rgba(255,255,255,.9); font-weight: 700; }
+
+.newsletter-examples-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.35);
+  margin-bottom: var(--space-4);
+}
+
+.newsletter-examples-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.newsletter-example-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,.7);
+  line-height: 1.55;
+}
+
+.example-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c4b5fd, #f9a8d4);
+  margin-top: 6px;
+}
 
 .newsletter-form { margin-bottom: var(--space-5); }
 
